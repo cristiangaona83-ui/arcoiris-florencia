@@ -44,8 +44,8 @@ export const siteConfig = {
   ],
 
   social: {
-    facebook: "",
-    instagram: "",
+    facebook: "https://www.facebook.com/arcoiris.florencia/",
+    instagram: "https://www.instagram.com/jardin.arcoirisflorencia/",
   },
 
   mapQuery:

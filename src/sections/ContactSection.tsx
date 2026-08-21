@@ -1,10 +1,12 @@
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ContactForm } from "@/components/ContactForm";
 import { LocationMap } from "@/components/LocationMap";
 import { siteConfig, PLACEHOLDER_TEXT } from "@/data/siteConfig";
 
 export function ContactSection() {
+  const hasSocial = siteConfig.social.facebook || siteConfig.social.instagram;
+
   return (
     <section id="contacto" className="bg-cream-soft py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -104,6 +106,40 @@ export function ContactSection() {
                 </div>
               </li>
 
+              {hasSocial && (
+                <li className="flex items-start gap-4 rounded-2xl bg-white p-4 shadow-card ring-1 ring-ink/5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-500">
+                    <Instagram className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-ink">Síguenos</p>
+                    <div className="mt-1.5 flex gap-2">
+                      {siteConfig.social.facebook && (
+                        <a
+                          href={siteConfig.social.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Facebook de Jardín Infantil Arcoíris Florencia"
+                          className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-deep text-ink transition-colors hover:bg-coral-100 hover:text-coral-600"
+                        >
+                          <Facebook className="h-5 w-5" aria-hidden="true" />
+                        </a>
+                      )}
+                      {siteConfig.social.instagram && (
+                        <a
+                          href={siteConfig.social.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Instagram de Jardín Infantil Arcoíris Florencia"
+                          className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-deep text-ink transition-colors hover:bg-coral-100 hover:text-coral-600"
+                        >
+                          <Instagram className="h-5 w-5" aria-hidden="true" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              )}
             </ul>
 
             <LocationMap />
