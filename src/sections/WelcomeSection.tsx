@@ -3,7 +3,7 @@ import { FlowerShape, StarShape } from "@/components/decor/Decorations";
 
 export function WelcomeSection() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-white py-14 sm:py-28">
       <FlowerShape className="absolute -left-4 top-10 h-16 w-16 text-petal-200 opacity-70" />
       <StarShape className="absolute right-10 bottom-16 h-6 w-6 text-sun-300 opacity-70" />
 

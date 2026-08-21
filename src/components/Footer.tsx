@@ -8,7 +8,7 @@ export function Footer() {
   const hasSocial = siteConfig.social.facebook || siteConfig.social.instagram;
 
   return (
-    <footer className="bg-ink text-white/80">
+    <footer id="site-footer" className="bg-ink text-white/80">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-3">

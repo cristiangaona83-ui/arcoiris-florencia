@@ -18,7 +18,7 @@ export function DocumentCard({ doc }: { doc: InstitutionalDocument }) {
       <a
         href={doc.file}
         download
-        className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold font-display text-white transition-colors hover:bg-sky-600 sm:w-auto"
+        className="inline-flex w-full min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-bold font-display text-white transition-colors hover:bg-sky-600 sm:w-auto"
         aria-label={`Descargar PDF: ${doc.name}`}
       >
         <Download className="h-5 w-5" aria-hidden="true" />

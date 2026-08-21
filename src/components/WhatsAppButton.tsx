@@ -1,5 +1,8 @@
 import { MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
+import { useHideNearFooter } from "@/hooks/useHideNearFooter";
+
+const HIDE_NEAR_IDS = ["contacto", "site-footer"];
 
 /**
  * Botón flotante de WhatsApp. Usa el primer número de siteConfig.phones.
@@ -15,8 +18,12 @@ export function WhatsAppButton() {
       )}`
     : undefined;
 
-  const commonClasses =
-    "fixed bottom-5 right-5 z-30 inline-flex h-14 w-14 items-center justify-center rounded-full shadow-soft transition-transform duration-200 sm:bottom-6 sm:right-6";
+  // Evita tapar el botón de enviar del formulario y el contenido del footer.
+  const hideNearContent = useHideNearFooter(HIDE_NEAR_IDS);
+
+  const commonClasses = `fixed bottom-5 right-5 z-30 inline-flex h-12 w-12 items-center justify-center rounded-full shadow-soft transition-all duration-200 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14 ${
+    hideNearContent ? "pointer-events-none translate-y-4 opacity-0" : "opacity-100"
+  }`;
 
   if (!hasNumber) {
     return (

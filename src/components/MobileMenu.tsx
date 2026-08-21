@@ -40,10 +40,10 @@ export function MobileMenu({ isOpen, onClose, activeId }: MobileMenuProps) {
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <div className="flex h-20 items-center justify-between px-5">
-          <div className="flex items-center gap-2.5">
-            <Logo className="h-9 w-9" />
-            <span className="font-display text-base font-bold text-ink">
+        <div className="flex h-16 items-center justify-between px-4 sm:h-20 sm:px-5">
+          <div className="flex min-w-0 items-center gap-2.5">
+            <Logo className="h-9 w-9 shrink-0" />
+            <span className="truncate font-display text-base font-bold text-ink">
               {siteConfig.shortName}
             </span>
           </div>

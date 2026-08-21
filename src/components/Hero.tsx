@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-cream to-cream pt-14 pb-20 sm:pt-20 sm:pb-28"
+      className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-cream to-cream pt-10 pb-14 sm:pt-20 sm:pb-28"
     >
       {/* Formas decorativas de fondo */}
       <CloudShape className="absolute left-[6%] top-16 h-14 w-24 text-white opacity-90 animate-float sm:h-20 sm:w-32" />

@@ -3,7 +3,7 @@ import { pedagogyItems } from "@/data/pedagogy";
 
 export function PedagogySection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-grape-50 to-white py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-b from-grape-50 to-white py-14 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow="Nuestra propuesta pedagógica"

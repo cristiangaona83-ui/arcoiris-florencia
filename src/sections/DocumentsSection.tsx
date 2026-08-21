@@ -5,7 +5,7 @@ import { documents } from "@/data/documents";
 
 export function DocumentsSection() {
   return (
-    <section id="documentos" className="bg-white py-20 sm:py-28">
+    <section id="documentos" className="bg-white py-14 sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow="Transparencia institucional"

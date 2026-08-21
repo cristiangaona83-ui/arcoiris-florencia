@@ -30,13 +30,13 @@ export function Header() {
           : "bg-cream/60 backdrop-blur-sm"
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
         <a
           href="#inicio"
-          className="flex items-center gap-3 rounded-xl focus-visible:outline-offset-4"
+          className="flex min-w-0 items-center gap-2 rounded-xl focus-visible:outline-offset-4 sm:gap-3"
         >
-          <Logo className="h-11 w-11 shrink-0" />
-          <span className="font-display text-lg font-bold leading-tight text-ink sm:text-xl">
+          <Logo className="h-9 w-9 shrink-0 sm:h-11 sm:w-11" />
+          <span className="truncate font-display text-base font-bold leading-tight text-ink sm:text-xl">
             {siteConfig.shortName}
           </span>
         </a>

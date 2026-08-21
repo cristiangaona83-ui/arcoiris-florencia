@@ -8,7 +8,7 @@ export function ContactSection() {
   const hasSocial = siteConfig.social.facebook || siteConfig.social.instagram;
 
   return (
-    <section id="contacto" className="bg-cream-soft py-20 sm:py-28">
+    <section id="contacto" className="bg-cream-soft py-14 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow="Hablemos"

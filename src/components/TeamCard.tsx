@@ -20,6 +20,7 @@ export function TeamCard({ member, index }: { member: TeamMember; index: number 
           <img
             src={member.photo}
             alt={member.name}
+            loading="lazy"
             className="h-full w-full object-cover"
           />
         ) : (

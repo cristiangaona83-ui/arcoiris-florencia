@@ -40,14 +40,14 @@ export function Gallery() {
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center gap-2">
+      <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 sm:pb-0">
         {(["Todas", ...galleryCategories] as Filter[]).map((cat) => (
           <button
             key={cat}
             type="button"
             onClick={() => setFilter(cat)}
             className={cn(
-              "min-h-[44px] rounded-full px-4 py-2 text-sm font-bold font-display transition-colors",
+              "min-h-[44px] shrink-0 rounded-full px-4 py-2 text-sm font-bold font-display transition-colors",
               filter === cat
                 ? "bg-coral-500 text-white shadow-soft"
                 : "bg-white text-ink-soft hover:bg-coral-50 hover:text-coral-600"

@@ -49,7 +49,7 @@ const paragraphs: { text: string; bold: string[] }[] = [
 
 export function HistorySection() {
   return (
-    <section id="historia" className="bg-cream-soft py-20 sm:py-28">
+    <section id="historia" className="bg-cream-soft py-14 sm:py-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <SectionTitle eyebrow="Trayectoria e identidad" title="Nuestra Historia" />
 

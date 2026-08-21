@@ -5,7 +5,7 @@ import { RainbowArc, StarShape } from "@/components/decor/Decorations";
 
 export function AdmissionSection() {
   return (
-    <section id="admision" className="relative overflow-hidden bg-coral-500 py-20 sm:py-28">
+    <section id="admision" className="relative overflow-hidden bg-coral-500 py-14 sm:py-28">
       <RainbowArc className="absolute -left-6 -top-2 h-24 w-40 opacity-30" />
       <StarShape className="absolute right-14 top-14 h-6 w-6 text-white opacity-40" />
       <StarShape className="absolute left-16 bottom-10 h-4 w-4 text-white opacity-40" />

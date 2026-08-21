@@ -3,7 +3,7 @@ import { Gallery } from "@/components/Gallery";
 
 export function GallerySection() {
   return (
-    <section id="galeria" className="bg-white py-20 sm:py-28">
+    <section id="galeria" className="bg-white py-14 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow="Nuestra vida institucional"

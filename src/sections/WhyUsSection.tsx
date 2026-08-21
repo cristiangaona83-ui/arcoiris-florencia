@@ -11,7 +11,7 @@ const colorStyles = {
 
 export function WhyUsSection() {
   return (
-    <section className="bg-white py-20 sm:py-28">
+    <section className="bg-white py-14 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow="Nuestro sello"

@@ -16,7 +16,7 @@ const chipColors = {
 
 export function ProjectSection() {
   return (
-    <section id="proyecto-educativo" className="bg-white py-20 sm:py-28">
+    <section id="proyecto-educativo" className="bg-white py-14 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionTitle eyebrow="Identidad institucional" title="Nuestro Proyecto Educativo" />
 
