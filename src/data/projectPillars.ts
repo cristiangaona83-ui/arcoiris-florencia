@@ -1,32 +1,68 @@
 import type { LucideIcon } from "lucide-react";
-import { Target, Eye, Award, HeartHandshake } from "lucide-react";
+import { Compass, Eye, HeartHandshake, Target } from "lucide-react";
 
-export interface ProjectPillar {
+export interface MissionVisionItem {
   icon: LucideIcon;
-  title: string;
-  content: string;
+  label: string;
+  text: string;
+  color: "coral" | "sky";
 }
 
-/**
- * Estructura preparada para el Proyecto Educativo Institucional.
- * Los textos oficiales (misión, visión, sellos, valores) aún no han sido
- * entregados: se muestra un texto claramente identificado como pendiente,
- * nunca contenido inventado.
- */
-export const PENDING_INSTITUTIONAL_CONTENT =
-  "Contenido institucional pendiente de incorporar.";
-
-export const projectPillars: ProjectPillar[] = [
-  { icon: Target, title: "Misión", content: PENDING_INSTITUTIONAL_CONTENT },
-  { icon: Eye, title: "Visión", content: PENDING_INSTITUTIONAL_CONTENT },
+export const missionVision: MissionVisionItem[] = [
   {
-    icon: Award,
-    title: "Sellos educativos",
-    content: PENDING_INSTITUTIONAL_CONTENT,
+    icon: Target,
+    label: "Misión",
+    text: "Promover el desarrollo integral de niños y niñas mediante experiencias significativas, inclusivas y afectivas, trabajando colaborativamente con las familias como primeros educadores.",
+    color: "coral",
+  },
+  {
+    icon: Eye,
+    label: "Visión",
+    text: "Ser una comunidad educativa reconocida por brindar una educación parvularia de calidad, inclusiva y acogedora, donde cada niño y niña pueda aprender, desarrollarse y crecer plenamente.",
+    color: "sky",
+  },
+];
+
+export interface ValueGroup {
+  icon: LucideIcon;
+  label: string;
+  items: string[];
+  summary: string;
+  color: "leaf" | "grape";
+}
+
+export const valueGroups: ValueGroup[] = [
+  {
+    icon: Compass,
+    label: "Principios",
+    items: [
+      "Bienestar",
+      "Singularidad",
+      "Juego",
+      "Participación",
+      "Relaciones positivas",
+      "Aprendizajes significativos",
+      "Potenciación",
+    ],
+    summary:
+      "Orientamos nuestra labor reconociendo a cada niño y niña como protagonista de sus aprendizajes, respetando sus características, intereses y ritmos de desarrollo.",
+    color: "leaf",
   },
   {
     icon: HeartHandshake,
-    title: "Valores y principios pedagógicos",
-    content: PENDING_INSTITUTIONAL_CONTENT,
+    label: "Valores",
+    items: [
+      "Inclusión",
+      "Amor",
+      "Respeto",
+      "Solidaridad",
+      "Responsabilidad",
+      "Libertad",
+      "Compartir",
+      "Verdad",
+    ],
+    summary:
+      "Estos valores orientan nuestra convivencia y fortalecen una comunidad educativa basada en el buen trato, la colaboración y el respeto por los demás.",
+    color: "grape",
   },
 ];
