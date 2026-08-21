@@ -12,7 +12,7 @@ export function NewsSection() {
           description="Un registro de las actividades, celebraciones y experiencias de nuestra comunidad educativa."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
           {news.map((item, index) => (
             <NewsCard key={item.id} item={item} index={index} />
           ))}
