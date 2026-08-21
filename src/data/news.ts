@@ -5,6 +5,10 @@ export interface NewsItem {
   date: string;
   category: string;
   image: string | null;
+  /** Párrafos del cuerpo completo, mostrados al abrir "Leer más". */
+  body?: string[];
+  /** Fotografías adicionales para la galería interna al abrir "Leer más". */
+  gallery?: string[];
 }
 
 /**
@@ -40,5 +44,30 @@ export const news: NewsItem[] = [
     date: "2026-05-15",
     category: "Celebraciones",
     image: null,
+  },
+  {
+    id: "kidzania-2026-07-31",
+    title: "Salida educativa a KidZania",
+    summary:
+      "Nuestros niños y niñas disfrutaron de una enriquecedora salida educativa a KidZania, aprendiendo mediante el juego, la exploración y nuevas experiencias.",
+    date: "2026-07-31",
+    category: "Actividades",
+    image: "/images/kidzania/1.jpeg",
+    body: [
+      "Nuestros niños y niñas participaron el 31 de julio de 2026 en una entretenida salida educativa a KidZania, donde tuvieron la oportunidad de aprender a través del juego, la exploración y la participación en distintas experiencias relacionadas con el mundo de las profesiones y la vida cotidiana.",
+      "Esta experiencia permitió fortalecer la autonomía, la convivencia, la participación y el aprendizaje significativo, ofreciendo nuevos espacios para descubrir, experimentar y compartir junto a sus compañeros y equipo educativo.",
+      "Fue una jornada llena de entusiasmo, aprendizajes y experiencias que enriquecen nuestro proyecto educativo y permiten que niños y niñas continúen aprendiendo más allá del aula.",
+    ],
+    gallery: [
+      "/images/kidzania/2.jpeg",
+      "/images/kidzania/3.jpeg",
+      "/images/kidzania/4.jpeg",
+      "/images/kidzania/5.jpeg",
+      "/images/kidzania/6.jpeg",
+      "/images/kidzania/7.jpeg",
+      "/images/kidzania/8.jpeg",
+      "/images/kidzania/9.jpeg",
+      "/images/kidzania/10.jpeg",
+    ],
   },
 ];
