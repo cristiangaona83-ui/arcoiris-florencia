@@ -3,8 +3,6 @@ export interface EducationLevel {
   name: string;
   description: string;
   color: "coral" | "sun" | "leaf" | "sky";
-  /** Placeholders visibles en la tarjeta hasta que se entregue la información real. */
-  schedule: string;
   entryAge: string;
 }
 
@@ -15,8 +13,7 @@ export const levels: EducationLevel[] = [
     description:
       "Espacio educativo orientado al desarrollo progresivo de la autonomía, el lenguaje, la exploración, la convivencia y el aprendizaje mediante experiencias significativas y el juego.",
     color: "coral",
-    schedule: "Información pendiente de completar.",
-    entryAge: "Información pendiente de completar.",
+    entryAge: "Desde los 2 años",
   },
   {
     id: "medio-mayor",
@@ -24,8 +21,7 @@ export const levels: EducationLevel[] = [
     description:
       "Experiencias pedagógicas que fortalecen la comunicación, el pensamiento, la convivencia, la motricidad y la autonomía, respetando los ritmos y características de cada niño y niña.",
     color: "sun",
-    schedule: "Información pendiente de completar.",
-    entryAge: "Información pendiente de completar.",
+    entryAge: "3 años",
   },
   {
     id: "prekinder",
@@ -33,8 +29,7 @@ export const levels: EducationLevel[] = [
     description:
       "Nivel orientado a ampliar las oportunidades de aprendizaje mediante experiencias lúdicas, creativas y participativas, favoreciendo el desarrollo integral y la preparación progresiva para nuevos desafíos educativos.",
     color: "leaf",
-    schedule: "Información pendiente de completar.",
-    entryAge: "Información pendiente de completar.",
+    entryAge: "4 años",
   },
   {
     id: "kinder",
@@ -42,7 +37,6 @@ export const levels: EducationLevel[] = [
     description:
       "Nivel que fortalece aprendizajes, habilidades y actitudes fundamentales para la transición a la Educación Básica, promoviendo la autonomía, la curiosidad, la convivencia y el disfrute por aprender.",
     color: "sky",
-    schedule: "Información pendiente de completar.",
-    entryAge: "Información pendiente de completar.",
+    entryAge: "5 años",
   },
 ];
