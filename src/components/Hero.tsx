@@ -1,10 +1,5 @@
 import { Button } from "@/components/Button";
-import {
-  CloudShape,
-  RainbowArc,
-  StarShape,
-  SunShape,
-} from "@/components/decor/Decorations";
+import { CloudShape, StarShape, SunShape } from "@/components/decor/Decorations";
 
 export function Hero() {
   return (
@@ -46,13 +41,12 @@ export function Hero() {
         </div>
 
         <div className="reveal relative mx-auto w-full max-w-md lg:max-w-none">
-          <div className="relative aspect-[4/3.4] w-full rounded-[2.5rem] bg-white p-3 shadow-soft">
-            <div className="flex h-full w-full flex-col items-center justify-center gap-4 rounded-[2rem] border-2 border-dashed border-sky-200 bg-sky-50 text-center">
-              <RainbowArc className="h-20 w-36 sm:h-24 sm:w-44" />
-              <p className="max-w-[220px] text-sm font-semibold text-sky-600">
-                Espacio reservado para fotografía institucional del jardín
-              </p>
-            </div>
+          <div className="relative aspect-[4/3.4] w-full overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-soft">
+            <img
+              src="/images/logo-oficial.jpg"
+              alt="Jardín Infantil Arcoíris Florencia — particular pagado reconocido por el MINEDUC, Resolución Exenta N°1762 del 10/05/2022"
+              className="h-full w-full rounded-[2rem] object-cover"
+            />
           </div>
 
           <div className="absolute -bottom-6 -left-6 flex h-24 w-24 items-center justify-center rounded-3xl bg-sun-300 shadow-soft animate-float sm:h-28 sm:w-28">

@@ -13,7 +13,7 @@ export const timelineEvents: TimelineEvent[] = [
   {
     year: "2022",
     date: "10 de mayo de 2022",
-    title: "Obtención del Reconocimiento Oficial del Estado.",
+    title: "Obtención del Reconocimiento Oficial del Estado (Resolución Exenta N°1762).",
   },
   {
     year: "Actualidad",

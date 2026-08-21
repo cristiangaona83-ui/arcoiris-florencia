@@ -18,6 +18,7 @@ export const siteConfig = {
 
   foundedAt: "1 de febrero de 2020",
   officialRecognitionAt: "10 de mayo de 2022",
+  officialRecognitionResolution: "Resolución Exenta N°1762",
   rbd: "42064-0",
 
   levels: [
