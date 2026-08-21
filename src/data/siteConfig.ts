@@ -50,6 +50,12 @@ export const siteConfig = {
 
   mapQuery:
     "General Manuel Baquedano 283, Llolleo, San Antonio, Región de Valparaíso, Chile",
+
+  // ID del formulario de Formspree (formspree.io) que recibe los mensajes
+  // del formulario de contacto en "email". Se obtiene al crear el formulario
+  // en el panel de Formspree (ej. "xyzabcd"). Mientras esté vacío, el
+  // formulario de contacto no envía mensajes realmente.
+  formspreeId: "",
 } as const;
 
 export const PLACEHOLDER_TEXT = "Información pendiente de completar.";

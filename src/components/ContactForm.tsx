@@ -1,12 +1,15 @@
 import { useState, type FormEvent } from "react";
+import { useForm } from "@formspree/react";
 import { AlertTriangle, CheckCircle2, Send } from "lucide-react";
+import { siteConfig } from "@/data/siteConfig";
 
-interface FormData {
+interface ContactFormData {
   name: string;
   email: string;
   phone: string;
   subject: string;
   message: string;
+  [key: string]: string;
 }
 
 interface FormErrors {
@@ -16,7 +19,7 @@ interface FormErrors {
   message?: string;
 }
 
-const initialData: FormData = {
+const initialData: ContactFormData = {
   name: "",
   email: "",
   phone: "",
@@ -27,11 +30,15 @@ const initialData: FormData = {
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function ContactForm() {
-  const [data, setData] = useState<FormData>(initialData);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const isConfigured = Boolean(siteConfig.formspreeId);
+  const [formspreeState, submitToFormspree, resetFormspree] = useForm<ContactFormData>(
+    siteConfig.formspreeId || "unconfigured"
+  );
 
-  function validate(values: FormData): FormErrors {
+  const [data, setData] = useState<ContactFormData>(initialData);
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  function validate(values: ContactFormData): FormErrors {
     const next: FormErrors = {};
     if (!values.name.trim()) next.name = "Ingresa tu nombre.";
     if (!values.email.trim()) {
@@ -48,42 +55,39 @@ export function ContactForm() {
     return next;
   }
 
-  function handleChange(field: keyof FormData, value: string) {
+  function handleChange(field: keyof ContactFormData, value: string) {
     setData((prev) => ({ ...prev, [field]: value }));
   }
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     const nextErrors = validate(data);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) {
-      setSubmitted(true);
-    }
+    if (Object.keys(nextErrors).length > 0) return;
+
+    if (!isConfigured) return;
+
+    await submitToFormspree(data);
   }
 
-  if (submitted) {
+  if (formspreeState.succeeded) {
     return (
       <div className="flex flex-col items-center gap-4 rounded-3xl bg-leaf-50 p-8 text-center">
         <CheckCircle2 className="h-12 w-12 text-leaf-500" aria-hidden="true" />
-        <h3 className="font-display text-xl font-bold text-ink">
-          Formulario validado correctamente
-        </h3>
-        <p className="max-w-md text-sm leading-relaxed text-ink-soft">
-          Este formulario aún no está conectado a un servicio de envío de
-          correos ni a un backend, por lo tanto tu mensaje{" "}
-          <strong>no ha sido enviado realmente</strong>. Debe integrarse
-          posteriormente con un servicio de formularios, correo electrónico o
-          backend propio.
+        <p className="max-w-md text-base leading-relaxed text-ink">
+          ¡Gracias por contactarnos! Tu mensaje ha sido enviado correctamente.
+          Nos pondremos en contacto contigo a la brevedad.
         </p>
         <button
           type="button"
           onClick={() => {
             setData(initialData);
-            setSubmitted(false);
+            setErrors({});
+            resetFormspree();
           }}
           className="mt-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-ink shadow-card hover:bg-cream-deep"
         >
-          Volver al formulario
+          Enviar otro mensaje
         </button>
       </div>
     );
@@ -91,13 +95,23 @@ export function ContactForm() {
 
   return (
     <form noValidate onSubmit={handleSubmit} className="space-y-5">
-      <div className="flex items-start gap-3 rounded-2xl bg-sun-50 p-4 text-sm text-ink-soft">
-        <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-sun-500" aria-hidden="true" />
-        <p>
-          Este formulario aún no está conectado a un servicio de envío real
-          (email o backend). Por ahora solo valida los datos ingresados.
-        </p>
-      </div>
+      {!isConfigured && (
+        <div className="flex items-start gap-3 rounded-2xl bg-sun-50 p-4 text-sm text-ink-soft">
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-sun-500" aria-hidden="true" />
+          <p>
+            El envío de mensajes aún no está activado (falta configurar el
+            formulario). Por ahora este formulario solo valida los datos
+            ingresados.
+          </p>
+        </div>
+      )}
+
+      {isConfigured && formspreeState.errors && !formspreeState.submitting && (
+        <div className="flex items-start gap-3 rounded-2xl bg-coral-50 p-4 text-sm text-coral-700">
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-coral-500" aria-hidden="true" />
+          <p>No pudimos enviar tu mensaje. Por favor, inténtalo nuevamente.</p>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
@@ -106,6 +120,7 @@ export function ContactForm() {
           </label>
           <input
             id="name"
+            name="name"
             type="text"
             autoComplete="name"
             value={data.name}
@@ -127,6 +142,7 @@ export function ContactForm() {
           </label>
           <input
             id="email"
+            name="email"
             type="email"
             autoComplete="email"
             value={data.email}
@@ -150,6 +166,7 @@ export function ContactForm() {
           </label>
           <input
             id="phone"
+            name="phone"
             type="tel"
             autoComplete="tel"
             value={data.phone}
@@ -164,6 +181,7 @@ export function ContactForm() {
           </label>
           <input
             id="subject"
+            name="subject"
             type="text"
             value={data.subject}
             onChange={(e) => handleChange("subject", e.target.value)}
@@ -185,6 +203,7 @@ export function ContactForm() {
         </label>
         <textarea
           id="message"
+          name="message"
           rows={5}
           value={data.message}
           onChange={(e) => handleChange("message", e.target.value)}
@@ -201,10 +220,11 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-coral-500 px-6 py-3.5 font-display text-base font-bold text-white shadow-soft transition-all hover:-translate-y-0.5 hover:bg-coral-600 sm:w-auto"
+        disabled={formspreeState.submitting}
+        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-coral-500 px-6 py-3.5 font-display text-base font-bold text-white shadow-soft transition-all hover:-translate-y-0.5 hover:bg-coral-600 disabled:pointer-events-none disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
       >
         <Send className="h-5 w-5" aria-hidden="true" />
-        Enviar mensaje
+        {formspreeState.submitting ? "Enviando..." : "Enviar mensaje"}
       </button>
     </form>
   );
