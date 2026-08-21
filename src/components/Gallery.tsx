@@ -83,8 +83,7 @@ export function Gallery() {
             key={image.id}
             type="button"
             onClick={() => setOpenIndex(index)}
-            className="reveal group relative aspect-square overflow-hidden rounded-2xl bg-sky-50 ring-1 ring-ink/5"
-            style={{ transitionDelay: `${(index % 8) * 60}ms` }}
+            className="group relative aspect-square overflow-hidden rounded-2xl bg-sky-50 ring-1 ring-ink/5"
           >
             <img
               src={image.src}
