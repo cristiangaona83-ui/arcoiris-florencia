@@ -23,7 +23,7 @@ export function WelcomeSection() {
           <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Bienvenidos a Arcoíris Florencia
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+          <p className="mt-6 max-w-xl text-left text-lg leading-[1.8] text-ink-soft [hyphens:auto] sm:text-justify">
             En Jardín Infantil Arcoíris Florencia creemos que cada niño y
             niña aprende descubriendo, jugando, explorando y compartiendo con
             otros. Nuestro propósito es acompañar sus primeros años de
