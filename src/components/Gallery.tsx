@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { galleryCategories, galleryImages, type GalleryCategory } from "@/data/gallery";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { cn } from "@/lib/utils";
@@ -68,19 +68,12 @@ export function Gallery() {
             className="reveal group relative aspect-square overflow-hidden rounded-2xl bg-sky-50 ring-1 ring-ink/5"
             style={{ transitionDelay: `${(index % 8) * 60}ms` }}
           >
-            {image.src ? (
-              <img
-                src={image.src}
-                alt={image.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-            ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-3 text-center text-sky-400">
-                <Images className="h-8 w-8" aria-hidden="true" />
-                <span className="text-xs font-semibold leading-tight">Fotografía pendiente</span>
-              </div>
-            )}
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
             <span className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/70 px-2 py-1.5 text-[11px] font-semibold text-white transition-transform duration-300 group-hover:translate-y-0">
               {image.category}
             </span>
@@ -121,18 +114,11 @@ export function Gallery() {
             className="flex max-h-[80vh] w-full max-w-2xl flex-col items-center justify-center gap-4 rounded-3xl bg-white p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            {filtered[openIndex].src ? (
-              <img
-                src={filtered[openIndex].src!}
-                alt={filtered[openIndex].alt}
-                className="max-h-[60vh] w-full rounded-2xl object-contain"
-              />
-            ) : (
-              <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 rounded-2xl bg-sky-50 text-sky-400">
-                <Images className="h-12 w-12" aria-hidden="true" />
-                <span className="font-semibold">Fotografía pendiente de incorporar</span>
-              </div>
-            )}
+            <img
+              src={filtered[openIndex].src}
+              alt={filtered[openIndex].alt}
+              className="max-h-[60vh] w-full rounded-2xl object-contain"
+            />
             <p className="text-center text-sm font-semibold text-ink-soft">
               {filtered[openIndex].alt}
             </p>

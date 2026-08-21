@@ -8,8 +8,7 @@ export type GalleryCategory =
 export interface GalleryImage {
   id: string;
   category: GalleryCategory;
-  /** Ruta de la imagen. null = fotografía aún pendiente de incorporar. */
-  src: string | null;
+  src: string;
   alt: string;
 }
 
@@ -23,14 +22,13 @@ export const galleryCategories: GalleryCategory[] = [
 
 /**
  * Para agregar una nueva fotografía:
- *   1. Copia el archivo a /public/images/galeria/ (nombre descriptivo, ej. "celebraciones-05.jpg").
+ *   1. Copia el archivo a /public/images/galeria/ (nombre descriptivo, ej. "celebraciones-07.jpg").
  *   2. Agrega un nuevo objeto aquí con su "id", "category", "src" (ruta "/images/galeria/archivo.jpg") y "alt".
- * Las categorías sin fotografías aún muestran "src: null" como placeholder visual
- * (nunca fotografías de niños tomadas de internet).
+ * Solo se listan aquí fotografías reales: una categoría sin fotografías
+ * simplemente no muestra tarjetas en esa sección de la galería.
  */
 export const galleryImages: GalleryImage[] = [
   { id: "g1", category: "Nuestro Jardín", src: "/images/galeria/nuestro-jardin-01.jpg", alt: "Fachada del Jardín Infantil Arcoíris Florencia" },
-  { id: "g2", category: "Nuestro Jardín", src: null, alt: "Patio y espacios exteriores del jardín (fotografía pendiente)" },
 
   { id: "g3", category: "Experiencias de aprendizaje", src: "/images/galeria/experiencias-aprendizaje-01.jpg", alt: "Experiencia de aprendizaje en el Jardín Infantil Arcoíris Florencia" },
   { id: "g4", category: "Experiencias de aprendizaje", src: "/images/galeria/experiencias-aprendizaje-02.jpg", alt: "Experiencia de aprendizaje en el Jardín Infantil Arcoíris Florencia" },
@@ -44,9 +42,6 @@ export const galleryImages: GalleryImage[] = [
   { id: "g12", category: "Experiencias de aprendizaje", src: "/images/galeria/experiencias-aprendizaje-10.jpg", alt: "Experiencia de aprendizaje en el Jardín Infantil Arcoíris Florencia" },
   { id: "g12b", category: "Experiencias de aprendizaje", src: "/images/galeria/experiencias-aprendizaje-11.jpg", alt: "Experiencia de aprendizaje en el Jardín Infantil Arcoíris Florencia" },
   { id: "g12c", category: "Experiencias de aprendizaje", src: "/images/galeria/experiencias-aprendizaje-12.jpg", alt: "Experiencia de aprendizaje en el Jardín Infantil Arcoíris Florencia" },
-
-  { id: "g13", category: "Actividades", src: null, alt: "Actividad educativa grupal (fotografía pendiente)" },
-  { id: "g14", category: "Actividades", src: null, alt: "Taller de expresión artística (fotografía pendiente)" },
 
   { id: "g15", category: "Celebraciones", src: "/images/galeria/celebraciones-01.jpg", alt: "Celebración en el Jardín Infantil Arcoíris Florencia" },
   { id: "g16", category: "Celebraciones", src: "/images/galeria/celebraciones-02.jpg", alt: "Celebración en el Jardín Infantil Arcoíris Florencia" },
