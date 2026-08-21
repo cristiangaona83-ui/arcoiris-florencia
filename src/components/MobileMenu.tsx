@@ -50,7 +50,7 @@ export function MobileMenu({ isOpen, onClose, activeId }: MobileMenuProps) {
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-card"
+            className="inline-flex h-11 w-11 touch-manipulation items-center justify-center rounded-full bg-white text-ink shadow-card"
             aria-label="Cerrar menú de navegación"
           >
             <X className="h-6 w-6" aria-hidden="true" />
