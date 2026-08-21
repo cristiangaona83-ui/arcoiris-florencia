@@ -9,10 +9,10 @@ export function TeamSection() {
         <SectionTitle
           eyebrow="Comunidad educativa"
           title="Conoce a nuestro equipo"
-          description="Las personas que acompañan el día a día de niños y niñas en Arcoíris Florencia."
+          description="En Arcoíris Florencia contamos con un equipo comprometido con el bienestar, desarrollo y aprendizaje de cada niño y niña, acompañando sus experiencias educativas con afecto, respeto y profesionalismo."
         />
 
-        <div className="mx-auto mt-14 grid max-w-xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+        <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-6">
           {team.map((member, index) => (
             <TeamCard key={member.id} member={member} index={index} />
           ))}
