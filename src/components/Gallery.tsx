@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { galleryCategories, galleryImages, type GalleryCategory } from "@/data/gallery";
+import { galleryImages } from "@/data/gallery";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { cn } from "@/lib/utils";
 
-type Filter = "Todas" | GalleryCategory;
+type Filter = "Todas" | string;
 
 /** Normaliza espacios y acentos para que la comparación de categorías sea robusta. */
 function normalizeCategory(value: string): string {
@@ -12,6 +12,17 @@ function normalizeCategory(value: string): string {
 }
 
 export function Gallery() {
+  // Los filtros se generan a partir de las categorías que realmente tienen
+  // fotografías: una categoría nueva aparece sola al agregar una foto con
+  // ese "category" en gallery.ts, sin tocar este componente.
+  const categories = useMemo(() => {
+    const seen: string[] = [];
+    for (const image of galleryImages) {
+      if (!seen.includes(image.category)) seen.push(image.category);
+    }
+    return seen;
+  }, []);
+
   const [filter, setFilter] = useState<Filter>("Todas");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -48,7 +59,7 @@ export function Gallery() {
   return (
     <div>
       <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 sm:pb-0">
-        {(["Todas", ...galleryCategories] as Filter[]).map((cat) => (
+        {(["Todas", ...categories] as Filter[]).map((cat) => (
           <button
             key={cat}
             type="button"
@@ -66,33 +77,27 @@ export function Gallery() {
         ))}
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="mt-10 text-center text-sm font-semibold text-ink-faint">
-          Aún no hay fotografías disponibles en esta categoría.
-        </p>
-      ) : (
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-          {filtered.map((image, index) => (
-            <button
-              key={image.id}
-              type="button"
-              onClick={() => setOpenIndex(index)}
-              className="reveal group relative aspect-square overflow-hidden rounded-2xl bg-sky-50 ring-1 ring-ink/5"
-              style={{ transitionDelay: `${(index % 8) * 60}ms` }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <span className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/70 px-2 py-1.5 text-[11px] font-semibold text-white transition-transform duration-300 group-hover:translate-y-0">
-                {image.category}
-              </span>
-            </button>
-          ))}
-        </div>
-      )}
+      <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+        {filtered.map((image, index) => (
+          <button
+            key={image.id}
+            type="button"
+            onClick={() => setOpenIndex(index)}
+            className="reveal group relative aspect-square overflow-hidden rounded-2xl bg-sky-50 ring-1 ring-ink/5"
+            style={{ transitionDelay: `${(index % 8) * 60}ms` }}
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/70 px-2 py-1.5 text-[11px] font-semibold text-white transition-transform duration-300 group-hover:translate-y-0">
+              {image.category}
+            </span>
+          </button>
+        ))}
+      </div>
 
       {openIndex !== null && filtered[openIndex] && (
         <div
