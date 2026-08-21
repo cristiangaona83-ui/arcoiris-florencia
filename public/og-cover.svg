@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FFF6E9"/>
+  <path d="M100 520a500 500 0 0 1 1000 0" fill="none" stroke="#D2452F" stroke-width="34" stroke-linecap="round"/>
+  <path d="M170 520a430 430 0 0 1 860 0" fill="none" stroke="#F79A1E" stroke-width="34" stroke-linecap="round"/>
+  <path d="M240 520a360 360 0 0 1 720 0" fill="none" stroke="#FFC65C" stroke-width="34" stroke-linecap="round"/>
+  <path d="M310 520a290 290 0 0 1 580 0" fill="none" stroke="#369C58" stroke-width="34" stroke-linecap="round"/>
+  <path d="M380 520a220 220 0 0 1 440 0" fill="none" stroke="#2C8FBE" stroke-width="34" stroke-linecap="round"/>
+  <path d="M450 520a150 150 0 0 1 300 0" fill="none" stroke="#7852B8" stroke-width="34" stroke-linecap="round"/>
+  <text x="600" y="580" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#332F45">Jardín Infantil Arcoíris Florencia</text>
+</svg>

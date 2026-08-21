@@ -1,0 +1,13 @@
+Coloca aquí los documentos institucionales en formato PDF
+(Proyecto Educativo Institucional, Reglamento Interno, protocolos,
+calendarios, comunicaciones, etc.).
+
+Luego, en src/data/documents.ts, agrega un elemento por cada documento,
+por ejemplo:
+
+  {
+    id: "reglamento-interno",
+    name: "Reglamento Interno",
+    description: "Normas y procedimientos internos del jardín.",
+    file: "/documents/reglamento-interno.pdf",
+  }
