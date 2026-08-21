@@ -43,6 +43,17 @@ export const galleryImages: GalleryImage[] = [
   { id: "g12b", category: "Experiencias de aprendizaje", src: "/images/galeria/experiencias-aprendizaje-11.jpg", alt: "Experiencia de aprendizaje en el Jardín Infantil Arcoíris Florencia" },
   { id: "g12c", category: "Experiencias de aprendizaje", src: "/images/galeria/experiencias-aprendizaje-12.jpg", alt: "Experiencia de aprendizaje en el Jardín Infantil Arcoíris Florencia" },
 
+  { id: "g13", category: "Actividades", src: "/images/kidzania/1.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13b", category: "Actividades", src: "/images/kidzania/2.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13c", category: "Actividades", src: "/images/kidzania/3.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13d", category: "Actividades", src: "/images/kidzania/4.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13e", category: "Actividades", src: "/images/kidzania/5.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13f", category: "Actividades", src: "/images/kidzania/6.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13g", category: "Actividades", src: "/images/kidzania/7.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13h", category: "Actividades", src: "/images/kidzania/8.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13i", category: "Actividades", src: "/images/kidzania/9.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+  { id: "g13j", category: "Actividades", src: "/images/kidzania/10.jpeg", alt: "Salida educativa a KidZania — Jardín Infantil Arcoíris Florencia" },
+
   { id: "g15", category: "Celebraciones", src: "/images/galeria/celebraciones-01.jpg", alt: "Celebración en el Jardín Infantil Arcoíris Florencia" },
   { id: "g16", category: "Celebraciones", src: "/images/galeria/celebraciones-02.jpg", alt: "Celebración en el Jardín Infantil Arcoíris Florencia" },
   { id: "g17", category: "Celebraciones", src: "/images/galeria/celebraciones-03.jpg", alt: "Celebración en el Jardín Infantil Arcoíris Florencia" },

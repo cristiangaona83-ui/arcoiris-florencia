@@ -6,6 +6,11 @@ import { cn } from "@/lib/utils";
 
 type Filter = "Todas" | GalleryCategory;
 
+/** Normaliza espacios y acentos para que la comparación de categorías sea robusta. */
+function normalizeCategory(value: string): string {
+  return value.trim().normalize("NFC");
+}
+
 export function Gallery() {
   const [filter, setFilter] = useState<Filter>("Todas");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -14,7 +19,9 @@ export function Gallery() {
     () =>
       filter === "Todas"
         ? galleryImages
-        : galleryImages.filter((img) => img.category === filter),
+        : galleryImages.filter(
+            (img) => normalizeCategory(img.category) === normalizeCategory(filter)
+          ),
     [filter]
   );
 
@@ -59,27 +66,33 @@ export function Gallery() {
         ))}
       </div>
 
-      <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-        {filtered.map((image, index) => (
-          <button
-            key={image.id}
-            type="button"
-            onClick={() => setOpenIndex(index)}
-            className="reveal group relative aspect-square overflow-hidden rounded-2xl bg-sky-50 ring-1 ring-ink/5"
-            style={{ transitionDelay: `${(index % 8) * 60}ms` }}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <span className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/70 px-2 py-1.5 text-[11px] font-semibold text-white transition-transform duration-300 group-hover:translate-y-0">
-              {image.category}
-            </span>
-          </button>
-        ))}
-      </div>
+      {filtered.length === 0 ? (
+        <p className="mt-10 text-center text-sm font-semibold text-ink-faint">
+          Aún no hay fotografías disponibles en esta categoría.
+        </p>
+      ) : (
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+          {filtered.map((image, index) => (
+            <button
+              key={image.id}
+              type="button"
+              onClick={() => setOpenIndex(index)}
+              className="reveal group relative aspect-square overflow-hidden rounded-2xl bg-sky-50 ring-1 ring-ink/5"
+              style={{ transitionDelay: `${(index % 8) * 60}ms` }}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/70 px-2 py-1.5 text-[11px] font-semibold text-white transition-transform duration-300 group-hover:translate-y-0">
+                {image.category}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
 
       {openIndex !== null && filtered[openIndex] && (
         <div
