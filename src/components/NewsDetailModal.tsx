@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CalendarDays, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowLeft, CalendarDays, ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { NewsItem } from "@/data/news";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { formatDate } from "@/lib/utils";
@@ -43,18 +43,16 @@ export function NewsDetailModal({ item, onClose }: { item: NewsItem; onClose: ()
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative aspect-[16/10] w-full shrink-0 bg-sky-50">
-          {item.image && (
-            <img
-              src={item.image}
-              alt={item.title}
-              className="h-full w-full object-cover"
-            />
-          )}
+          <img
+            src={item.image}
+            alt={item.title}
+            className="h-full w-full object-cover"
+          />
           <button
             type="button"
             onClick={onClose}
-            className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-ink shadow-card hover:bg-white"
-            aria-label="Cerrar"
+            className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-card hover:bg-cream-deep"
+            aria-label="Cerrar y volver a Noticias y Actividades"
           >
             <X className="h-6 w-6" aria-hidden="true" />
           </button>
@@ -103,6 +101,15 @@ export function NewsDetailModal({ item, onClose }: { item: NewsItem; onClose: ()
               </div>
             </div>
           )}
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="mt-8 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-cream-deep px-5 py-3 text-sm font-bold text-ink transition-colors hover:bg-sun-100 sm:w-auto"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            Volver a Noticias y Actividades
+          </button>
         </div>
       </div>
 

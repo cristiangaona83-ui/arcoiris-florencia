@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CalendarDays, ImageOff } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import type { NewsItem } from "@/data/news";
 import { NewsDetailModal } from "@/components/NewsDetailModal";
 import { formatDate } from "@/lib/utils";
@@ -12,12 +12,8 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
       className="reveal flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1.5"
       style={{ transitionDelay: `${index * 70}ms` }}
     >
-      <div className="flex aspect-[16/10] items-center justify-center bg-sky-50 text-sky-300">
-        {item.image ? (
-          <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full object-cover" />
-        ) : (
-          <ImageOff className="h-10 w-10" aria-hidden="true" />
-        )}
+      <div className="aspect-[16/10] bg-sky-50">
+        <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full object-cover" />
       </div>
 
       <div className="flex flex-1 flex-col p-6">

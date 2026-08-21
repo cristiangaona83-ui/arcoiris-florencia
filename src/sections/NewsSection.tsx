@@ -9,7 +9,7 @@ export function NewsSection() {
         <SectionTitle
           eyebrow="Comunidad Arcoíris Florencia"
           title="Noticias y actividades"
-          description="Contenido de demostración: reemplazar por las noticias reales del jardín."
+          description="Un registro de las actividades, celebraciones y experiencias de nuestra comunidad educativa."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
