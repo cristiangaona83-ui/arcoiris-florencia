@@ -12,7 +12,7 @@ export function TeamSection() {
           description="Las personas que acompañan el día a día de niños y niñas en Arcoíris Florencia."
         />
 
-        <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mx-auto mt-14 grid max-w-xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
           {team.map((member, index) => (
             <TeamCard key={member.id} member={member} index={index} />
           ))}

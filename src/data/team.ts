@@ -7,9 +7,8 @@ export interface TeamMember {
 }
 
 /**
- * Únicamente Rosa Verdugo Matamala (Directora) es un dato confirmado.
- * El resto del equipo se deja como tarjetas placeholder: no se inventan
- * nombres ni cargos hasta contar con la información oficial.
+ * Equipo confirmado del jardín. Se muestran únicamente los integrantes
+ * con datos reales entregados: no se agregan tarjetas placeholder.
  */
 export const team: TeamMember[] = [
   {
@@ -20,31 +19,10 @@ export const team: TeamMember[] = [
     isPlaceholder: false,
   },
   {
-    id: "educadora-1",
-    name: "Nombre pendiente de completar",
-    role: "Educadora de Párvulos",
-    photo: null,
-    isPlaceholder: true,
-  },
-  {
-    id: "educadora-2",
-    name: "Nombre pendiente de completar",
-    role: "Educadora de Párvulos",
-    photo: null,
-    isPlaceholder: true,
-  },
-  {
     id: "tecnico-1",
-    name: "Nombre pendiente de completar",
+    name: "Daniela Araya Cisternas",
     role: "Técnico en Educación Parvularia",
     photo: "/images/equipo/tecnico-parvularia-01.jpg",
-    isPlaceholder: true,
-  },
-  {
-    id: "tecnico-2",
-    name: "Nombre pendiente de completar",
-    role: "Técnico en Educación Parvularia",
-    photo: null,
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
 ];
