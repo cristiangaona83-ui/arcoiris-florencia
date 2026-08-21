@@ -43,7 +43,7 @@ export function Hero() {
         <div className="reveal relative mx-auto w-full max-w-md lg:max-w-none">
           <div className="relative aspect-[4/3.4] w-full overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-soft">
             <img
-              src="/images/logo-oficial.jpg"
+              src="/images/hero/portada-jardin.jpg"
               alt="Jardín Infantil Arcoíris Florencia — particular pagado reconocido por el MINEDUC, Resolución Exenta N°1762 del 10/05/2022"
               className="h-full w-full rounded-[2rem] object-cover"
             />

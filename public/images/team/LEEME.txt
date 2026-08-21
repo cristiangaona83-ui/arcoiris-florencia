@@ -1,9 +1,0 @@
-Coloca aquí las fotografías del equipo (formato .jpg, .jpeg, .webp o .png).
-
-Luego, en src/data/team.ts, reemplaza el campo "photo: null" de cada
-integrante por la ruta correspondiente, por ejemplo:
-
-  photo: "/images/team/rosa-verdugo.jpg"
-
-Nota: el componente TeamCard debe actualizarse para mostrar la imagen
-cuando "photo" no sea null (actualmente muestra un ícono placeholder).

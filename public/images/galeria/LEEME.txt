@@ -1,0 +1,20 @@
+Cómo agregar una nueva fotografía a la galería:
+
+1. Copia el archivo de imagen a esta carpeta (public/images/galeria/).
+   Usa un nombre simple y descriptivo, por ejemplo: actividades-01.jpg
+
+2. Abre src/data/gallery.ts y agrega un nuevo objeto al arreglo
+   "galleryImages", por ejemplo:
+
+   {
+     id: "g20",
+     category: "Actividades",
+     src: "/images/galeria/actividades-01.jpg",
+     alt: "Descripción breve de la fotografía",
+   }
+
+Categorías disponibles: "Nuestro Jardín", "Experiencias de aprendizaje",
+"Actividades", "Celebraciones", "Comunidad educativa".
+
+No es necesario tocar ningún otro archivo: la fotografía aparecerá
+automáticamente en la sección "Galería" del sitio.

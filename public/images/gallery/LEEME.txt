@@ -1,6 +1,0 @@
-Coloca aquí las fotografías reales del jardín (formato .jpg, .jpeg, .webp o .png).
-
-Luego, en src/data/gallery.ts, reemplaza el campo "src: null" de cada
-elemento por la ruta correspondiente, por ejemplo:
-
-  src: "/images/gallery/patio-01.jpg"

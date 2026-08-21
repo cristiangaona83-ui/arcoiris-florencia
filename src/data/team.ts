@@ -16,7 +16,7 @@ export const team: TeamMember[] = [
     id: "directora",
     name: "Rosa Verdugo Matamala",
     role: "Directora",
-    photo: null,
+    photo: "/images/equipo/directora-rosa-verdugo.jpg",
     isPlaceholder: false,
   },
   {
@@ -37,7 +37,7 @@ export const team: TeamMember[] = [
     id: "tecnico-1",
     name: "Nombre pendiente de completar",
     role: "Técnico en Educación Parvularia",
-    photo: null,
+    photo: "/images/equipo/tecnico-parvularia-01.jpg",
     isPlaceholder: true,
   },
   {
