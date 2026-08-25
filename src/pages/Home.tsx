@@ -10,6 +10,7 @@ import { GallerySection } from "@/sections/GallerySection";
 import { NewsSection } from "@/sections/NewsSection";
 import { DocumentsSection } from "@/sections/DocumentsSection";
 import { AdmissionSection } from "@/sections/AdmissionSection";
+import { TestimonialsSection } from "@/sections/TestimonialsSection";
 import { ContactSection } from "@/sections/ContactSection";
 
 export function Home() {
@@ -29,6 +30,7 @@ export function Home() {
       <NewsSection />
       <DocumentsSection />
       <AdmissionSection />
+      <TestimonialsSection />
       <ContactSection />
     </>
   );

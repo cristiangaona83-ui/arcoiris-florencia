@@ -2,10 +2,17 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Home } from "@/pages/Home";
+import { AdminPage } from "@/pages/AdminPage";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 function App() {
   const rootRef = useRevealOnScroll<HTMLDivElement>();
+
+  // Sitio estático sin librería de rutas: /admin es la única ruta aparte
+  // de la página principal, así que basta con revisar el path actual.
+  if (window.location.pathname.startsWith("/admin")) {
+    return <AdminPage />;
+  }
 
   return (
     <div ref={rootRef}>
