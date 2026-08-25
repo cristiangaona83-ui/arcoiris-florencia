@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 export function TeamCard({ member, index }: { member: TeamMember; index: number }) {
   return (
     <article
-      className="reveal flex flex-col items-center rounded-3xl bg-white p-6 text-center shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1.5"
+      className="reveal flex flex-col items-center rounded-3xl bg-white p-4 text-center shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1.5 sm:p-6"
       style={{ transitionDelay: `${index * 70}ms` }}
     >
       <div
         className={cn(
-          "flex h-28 w-28 items-center justify-center overflow-hidden rounded-full ring-4",
+          "flex aspect-[4/5] w-full max-w-40 items-center justify-center overflow-hidden rounded-2xl ring-4",
           member.isPlaceholder
             ? "bg-cream-deep ring-ink/5"
             : "bg-coral-50 ring-coral-100"
@@ -21,7 +21,7 @@ export function TeamCard({ member, index }: { member: TeamMember; index: number 
             src={member.photo}
             alt={member.name}
             loading="lazy"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-center"
           />
         ) : (
           <User

@@ -12,7 +12,7 @@ export function TeamSection() {
           description="En Arcoíris Florencia contamos con un equipo comprometido con el bienestar, desarrollo y aprendizaje de cada niño y niña, acompañando sus experiencias educativas con afecto, respeto y profesionalismo."
         />
 
-        <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-6">
+        <div className="mt-14 grid grid-cols-2 gap-5 sm:gap-6 lg:grid-cols-4">
           {team.map((member, index) => (
             <TeamCard key={member.id} member={member} index={index} />
           ))}
