@@ -14,8 +14,8 @@ export function Hero() {
       <StarShape className="absolute left-[16%] top-40 h-5 w-5 text-petal-300 opacity-70" />
       <StarShape className="absolute right-[22%] bottom-16 h-4 w-4 text-grape-300 opacity-70" />
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div className="reveal text-center lg:text-left">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="reveal mx-auto max-w-2xl text-center">
           <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-bold text-coral-600 shadow-card font-display">
             Educación Parvularia · Llolleo, San Antonio
           </span>
@@ -25,12 +25,12 @@ export function Hero() {
               crecemos juntos
             </span>
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft lg:mx-0">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
             En Jardín Infantil Arcoíris Florencia acompañamos los primeros
             aprendizajes de niños y niñas en un ambiente acogedor, seguro y
             lleno de oportunidades para descubrir, aprender y crecer.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Button href="#nuestro-jardin" variant="primary">
               Conoce nuestro jardín
             </Button>
@@ -40,20 +40,13 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="reveal relative mx-auto w-full max-w-md lg:max-w-none">
-          <div className="relative aspect-[4/3.4] w-full overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-soft">
+        <div className="reveal relative mx-auto mt-12 w-full">
+          <div className="relative aspect-[2073/758] w-full overflow-hidden rounded-[1.75rem] bg-white p-2 shadow-soft sm:rounded-[2rem] sm:p-3">
             <img
-              src="/images/hero/portada-jardin.jpg"
-              alt="Jardín Infantil Arcoíris Florencia — particular pagado reconocido por el MINEDUC, Resolución Exenta N°1762 del 10/05/2022"
-              className="h-full w-full rounded-[2rem] object-cover"
+              src="/images/PORTADA.jpeg"
+              alt="Jardín Infantil Arcoíris Florencia — Niveles Medio Menor, Medio Mayor, Prekínder y Kínder. Reconocido por el Ministerio de Educación, RBD N°42064"
+              className="h-full w-full rounded-[1.25rem] object-contain sm:rounded-[1.5rem]"
             />
-          </div>
-
-          <div className="absolute -bottom-6 -left-6 flex h-24 w-24 items-center justify-center rounded-3xl bg-sun-300 shadow-soft animate-float sm:h-28 sm:w-28">
-            <span className="font-display text-3xl">🌻</span>
-          </div>
-          <div className="absolute -right-4 -top-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-petal-200 shadow-soft animate-float [animation-delay:1s] sm:h-20 sm:w-20">
-            <span className="font-display text-2xl">✏️</span>
           </div>
         </div>
       </div>
