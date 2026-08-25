@@ -12,9 +12,18 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
+/**
+ * true solo si ambas variables llegaron con valor real al momento del
+ * build. Si el despliegue de producción no las tenía disponibles al
+ * compilar (por ejemplo, un build cacheado antes de agregarlas en
+ * Vercel), esto queda en false y la UI debe mostrarlo explícitamente
+ * en vez de fallar en silencio contra un host inexistente.
+ */
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseKey);
+
+if (!isSupabaseConfigured) {
   console.warn(
-    "Supabase no está configurado: faltan VITE_SUPABASE_URL o VITE_SUPABASE_PUBLISHABLE_KEY en .env.local"
+    "Supabase no está configurado: faltan VITE_SUPABASE_URL o VITE_SUPABASE_PUBLISHABLE_KEY en el entorno de build."
   );
 }
 

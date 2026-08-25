@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { AlertTriangle } from "lucide-react";
+import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 
 export function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -9,17 +10,53 @@ export function AdminLogin() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+
+    if (!isSupabaseConfigured) {
+      setError(
+        "Variables de entorno no configuradas: este despliegue no tiene VITE_SUPABASE_URL ni VITE_SUPABASE_PUBLISHABLE_KEY disponibles. Revísalas en la configuración de producción y vuelve a desplegar."
+      );
+      return;
+    }
+
     setLoading(true);
     setError(null);
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
-    if (signInError) setError("Correo o contraseña incorrectos.");
+
+    try {
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      if (signInError) {
+        // "Invalid login credentials" es la respuesta típica de Supabase Auth
+        // cuando el correo o la contraseña son incorrectos (o la cuenta no
+        // existe/no está confirmada). Cualquier otro error de la API se
+        // trata como problema de conexión, no de credenciales.
+        const message = signInError.message?.toLowerCase() ?? "";
+        setError(
+          message.includes("invalid login credentials") || message.includes("invalid")
+            ? "Credenciales incorrectas."
+            : "Error de conexión con Supabase. Inténtalo nuevamente en unos momentos."
+        );
+      }
+    } catch {
+      // El fetch interno de Supabase lanzó (DNS, red caída, host inexistente).
+      setError("Error de conexión con Supabase. Verifica tu conexión e inténtalo nuevamente.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
     <div className="mx-auto max-w-sm rounded-3xl bg-white p-8 shadow-card ring-1 ring-ink/5">
       <h1 className="font-display text-xl font-bold text-ink">Acceso administración</h1>
       <p className="mt-1 text-sm text-ink-soft">Opiniones de familias</p>
+
+      {!isSupabaseConfigured && (
+        <div className="mt-4 flex items-start gap-3 rounded-2xl bg-sun-50 p-4 text-sm text-ink-soft">
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-sun-500" aria-hidden="true" />
+          <p>
+            Variables de entorno no configuradas en este despliegue. El inicio de sesión no
+            funcionará hasta corregirlo.
+          </p>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>
