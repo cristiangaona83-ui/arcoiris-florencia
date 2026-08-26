@@ -4,6 +4,10 @@ import { AlertTriangle } from "lucide-react";
 import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 import { AdminLogin } from "@/components/admin/AdminLogin";
 import { AdminModeration } from "@/components/admin/AdminModeration";
+import { AdminHome } from "@/components/admin/AdminHome";
+import { AdminSettingsForm } from "@/components/admin/AdminSettingsForm";
+import { AdminTeam } from "@/components/admin/AdminTeam";
+import { AdminDashboardShell, type AdminModuleId } from "@/components/admin/AdminDashboardShell";
 
 function AdminShell({ children }: { children: ReactNode }) {
   return (
@@ -29,6 +33,7 @@ export function AdminPage() {
   const [session, setSession] = useState<Session | null>(null);
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [adminState, setAdminState] = useState<AdminCheckState>("checking");
+  const [activeModule, setActiveModule] = useState<AdminModuleId>("inicio");
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
@@ -162,8 +167,13 @@ export function AdminPage() {
   }
 
   return (
-    <AdminShell>
-      <AdminModeration />
-    </AdminShell>
+    <AdminDashboardShell activeModule={activeModule} onSelectModule={setActiveModule}>
+      {activeModule === "inicio" && <AdminHome />}
+      {activeModule === "configuracion" && <AdminSettingsForm />}
+      {activeModule === "equipo" && <AdminTeam />}
+      {activeModule === "opiniones" && <AdminModeration />}
+    </AdminDashboardShell>
   );
 }
+
+export default AdminPage;

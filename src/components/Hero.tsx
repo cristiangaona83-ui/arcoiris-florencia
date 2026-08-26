@@ -1,7 +1,10 @@
 import { Button } from "@/components/Button";
 import { CloudShape, StarShape, SunShape } from "@/components/decor/Decorations";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 export function Hero() {
+  const settings = useSiteSettings();
+
   return (
     <section
       id="inicio"
@@ -20,22 +23,20 @@ export function Hero() {
             Educación Parvularia · Llolleo, San Antonio
           </span>
           <h1 className="font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl lg:text-[3.4rem]">
-            Aprendemos, jugamos y{" "}
+            {settings.heroTitlePrefix}{" "}
             <span className="relative inline-block text-coral-500">
-              crecemos juntos
+              {settings.heroTitleHighlight}
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
-            En Jardín Infantil Arcoíris Florencia acompañamos los primeros
-            aprendizajes de niños y niñas en un ambiente acogedor, seguro y
-            lleno de oportunidades para descubrir, aprender y crecer.
+            {settings.heroSubtitle}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button href="#nuestro-jardin" variant="primary">
-              Conoce nuestro jardín
+            <Button href={settings.heroPrimaryButtonHref} variant="primary">
+              {settings.heroPrimaryButtonLabel}
             </Button>
-            <Button href="#contacto" variant="outline">
-              Contáctanos
+            <Button href={settings.heroSecondaryButtonHref} variant="outline">
+              {settings.heroSecondaryButtonLabel}
             </Button>
           </div>
         </div>
@@ -43,8 +44,8 @@ export function Hero() {
         <div className="reveal relative mx-auto mt-12 w-full">
           <div className="relative aspect-[2073/758] w-full overflow-hidden rounded-[1.75rem] bg-white p-2 shadow-soft sm:rounded-[2rem] sm:p-3">
             <img
-              src="/images/PORTADA.jpeg"
-              alt="Jardín Infantil Arcoíris Florencia — Niveles Medio Menor, Medio Mayor, Prekínder y Kínder. Reconocido por el Ministerio de Educación, RBD N°42064"
+              src={settings.heroImageUrl}
+              alt={`${settings.name} — Niveles Medio Menor, Medio Mayor, Prekínder y Kínder. Reconocido por el Ministerio de Educación, RBD N°${settings.rbd}`}
               className="h-full w-full rounded-[1.25rem] object-contain sm:rounded-[1.5rem]"
             />
           </div>
