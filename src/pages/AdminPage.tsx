@@ -6,7 +6,9 @@ import { AdminLogin } from "@/components/admin/AdminLogin";
 import { AdminModeration } from "@/components/admin/AdminModeration";
 import { AdminHome } from "@/components/admin/AdminHome";
 import { AdminSettingsForm } from "@/components/admin/AdminSettingsForm";
+import { AdminInstitution } from "@/components/admin/AdminInstitution";
 import { AdminTeam } from "@/components/admin/AdminTeam";
+import { AdminNews } from "@/components/admin/AdminNews";
 import { AdminDashboardShell, type AdminModuleId } from "@/components/admin/AdminDashboardShell";
 
 function AdminShell({ children }: { children: ReactNode }) {
@@ -170,7 +172,9 @@ export function AdminPage() {
     <AdminDashboardShell activeModule={activeModule} onSelectModule={setActiveModule}>
       {activeModule === "inicio" && <AdminHome />}
       {activeModule === "configuracion" && <AdminSettingsForm />}
+      {activeModule === "institucion" && <AdminInstitution />}
       {activeModule === "equipo" && <AdminTeam />}
+      {activeModule === "noticias" && <AdminNews />}
       {activeModule === "opiniones" && <AdminModeration />}
     </AdminDashboardShell>
   );

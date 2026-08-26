@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Home } from "@/pages/Home";
 import { SiteSettingsProvider } from "@/contexts/SiteSettingsContext";
+import { InstitutionalContentProvider } from "@/contexts/InstitutionalContentContext";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 // Cargado solo cuando se visita /admin: el sitio público nunca descarga el
@@ -32,20 +33,22 @@ function App() {
 
   return (
     <SiteSettingsProvider>
-      <div ref={rootRef}>
-        <a
-          href="#inicio"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-ink focus:shadow-soft"
-        >
-          Saltar al contenido principal
-        </a>
-        <Header />
-        <main>
-          <Home />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
+      <InstitutionalContentProvider>
+        <div ref={rootRef}>
+          <a
+            href="#inicio"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-ink focus:shadow-soft"
+          >
+            Saltar al contenido principal
+          </a>
+          <Header />
+          <main>
+            <Home />
+          </main>
+          <Footer />
+          <WhatsAppButton />
+        </div>
+      </InstitutionalContentProvider>
     </SiteSettingsProvider>
   );
 }

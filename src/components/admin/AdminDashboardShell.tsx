@@ -3,12 +3,20 @@ import { LogOut, Menu, X } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 import { cn } from "@/lib/utils";
 
-export type AdminModuleId = "inicio" | "configuracion" | "equipo" | "opiniones";
+export type AdminModuleId =
+  | "inicio"
+  | "configuracion"
+  | "institucion"
+  | "equipo"
+  | "noticias"
+  | "opiniones";
 
 const NAV_ITEMS: { id: AdminModuleId; label: string }[] = [
   { id: "inicio", label: "Inicio" },
   { id: "configuracion", label: "Página principal / Configuración" },
+  { id: "institucion", label: "Institución" },
   { id: "equipo", label: "Equipo" },
+  { id: "noticias", label: "Noticias" },
   { id: "opiniones", label: "Opiniones de familias" },
 ];
 

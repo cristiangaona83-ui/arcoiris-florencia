@@ -46,7 +46,7 @@ function extractPublicMediaPath(url: string | null): string | null {
  */
 export async function uploadPublicMedia(
   file: File,
-  folder: "team" | "hero",
+  folder: "team" | "hero" | "news",
   previousUrl: string | null,
   maxDimension: number = MAX_DIMENSION
 ): Promise<string> {

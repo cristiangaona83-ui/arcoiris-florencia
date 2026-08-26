@@ -1,5 +1,6 @@
+import { Compass, Eye, HeartHandshake, Target } from "lucide-react";
 import { SectionTitle } from "@/components/SectionTitle";
-import { missionVision, valueGroups } from "@/data/projectPillars";
+import { useInstitutionalContent } from "@/contexts/InstitutionalContentContext";
 import { cn } from "@/lib/utils";
 
 const cardColors = {
@@ -15,6 +16,37 @@ const chipColors = {
 } as const;
 
 export function ProjectSection() {
+  const {
+    missionText,
+    visionText,
+    principlesSummary,
+    principlesItems,
+    valuesSummary,
+    valuesItems,
+  } = useInstitutionalContent();
+
+  const missionVision = [
+    { icon: Target, label: "Misión", text: missionText, color: "coral" as const },
+    { icon: Eye, label: "Visión", text: visionText, color: "sky" as const },
+  ];
+
+  const valueGroups = [
+    {
+      icon: Compass,
+      label: "Principios",
+      items: principlesItems,
+      summary: principlesSummary,
+      color: "leaf" as const,
+    },
+    {
+      icon: HeartHandshake,
+      label: "Valores",
+      items: valuesItems,
+      summary: valuesSummary,
+      color: "grape" as const,
+    },
+  ];
+
   return (
     <section id="proyecto-educativo" className="bg-white py-14 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
