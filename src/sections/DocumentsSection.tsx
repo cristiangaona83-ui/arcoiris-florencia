@@ -1,9 +1,42 @@
+import { useEffect, useState } from "react";
 import { FolderOpen } from "lucide-react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { DocumentCard } from "@/components/DocumentCard";
-import { documents } from "@/data/documents";
+import { documents as staticDocuments, type InstitutionalDocument } from "@/data/documents";
+import { fetchVisibleDocuments } from "@/lib/institutionalDocuments";
 
 export function DocumentsSection() {
+  // Se inicializa ya con el respaldo estático: si Supabase falla o tarda,
+  // la sección nunca queda vacía, muestra los documentos actuales sin
+  // interrupción.
+  const [documents, setDocuments] = useState<InstitutionalDocument[]>(staticDocuments);
+
+  useEffect(() => {
+    let active = true;
+    fetchVisibleDocuments()
+      .then((rows) => {
+        if (!active) return;
+        if (rows.length === 0) return; // sin filas aún: se mantiene el respaldo estático
+        setDocuments(
+          rows.map((row) => ({
+            id: row.id,
+            name: row.name,
+            description: row.description ?? "",
+            file: row.file_url ?? "",
+          }))
+        );
+      })
+      .catch((error) => {
+        console.error(
+          "No se pudo cargar los documentos desde Supabase; se mantiene el contenido estático:",
+          error
+        );
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <section id="documentos" className="bg-white py-14 sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

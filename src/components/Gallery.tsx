@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { galleryImages } from "@/data/gallery";
+import { galleryImages as staticGalleryImages, type GalleryImage } from "@/data/gallery";
+import { fetchVisibleGalleryImages } from "@/lib/galleryImages";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { cn } from "@/lib/utils";
 
@@ -12,16 +13,46 @@ function normalizeCategory(value: string): string {
 }
 
 export function Gallery() {
+  // Se inicializa ya con el respaldo estático: si Supabase falla o tarda,
+  // la galería nunca queda vacía, muestra las fotografías actuales sin
+  // interrupción.
+  const [images, setImages] = useState<GalleryImage[]>(staticGalleryImages);
+
+  useEffect(() => {
+    let active = true;
+    fetchVisibleGalleryImages()
+      .then((rows) => {
+        if (!active) return;
+        if (rows.length === 0) return; // sin filas aún: se mantiene el respaldo estático
+        setImages(
+          rows.map((row) => ({
+            id: row.id,
+            category: row.category,
+            src: row.image_url,
+            alt: row.alt_text,
+          }))
+        );
+      })
+      .catch((error) => {
+        console.error(
+          "No se pudo cargar la galería desde Supabase; se mantiene el contenido estático:",
+          error
+        );
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // Los filtros se generan a partir de las categorías que realmente tienen
-  // fotografías: una categoría nueva aparece sola al agregar una foto con
-  // ese "category" en gallery.ts, sin tocar este componente.
+  // fotografías: una categoría nueva aparece sola, sin tocar este componente.
   const categories = useMemo(() => {
     const seen: string[] = [];
-    for (const image of galleryImages) {
+    for (const image of images) {
       if (!seen.includes(image.category)) seen.push(image.category);
     }
     return seen;
-  }, []);
+  }, [images]);
 
   const [filter, setFilter] = useState<Filter>("Todas");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -29,11 +60,9 @@ export function Gallery() {
   const filtered = useMemo(
     () =>
       filter === "Todas"
-        ? galleryImages
-        : galleryImages.filter(
-            (img) => normalizeCategory(img.category) === normalizeCategory(filter)
-          ),
-    [filter]
+        ? images
+        : images.filter((img) => normalizeCategory(img.category) === normalizeCategory(filter)),
+    [filter, images]
   );
 
   const closeModal = () => setOpenIndex(null);

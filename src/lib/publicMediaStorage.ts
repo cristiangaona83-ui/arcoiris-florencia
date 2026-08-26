@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 
-const BUCKET = "public-media";
+export const PUBLIC_MEDIA_BUCKET = "public-media";
+const BUCKET = PUBLIC_MEDIA_BUCKET;
 const MAX_DIMENSION = 1600;
 const JPEG_QUALITY = 0.85;
 
@@ -29,7 +30,7 @@ async function compressImage(file: File, maxDimension: number): Promise<Blob> {
 }
 
 /** Extrae el path interno del bucket a partir de una URL pública, o null si no pertenece a este bucket. */
-function extractPublicMediaPath(url: string | null): string | null {
+export function extractPublicMediaPath(url: string | null): string | null {
   if (!url) return null;
   const marker = `/storage/v1/object/public/${BUCKET}/`;
   const index = url.indexOf(marker);
@@ -46,7 +47,7 @@ function extractPublicMediaPath(url: string | null): string | null {
  */
 export async function uploadPublicMedia(
   file: File,
-  folder: "team" | "hero" | "news",
+  folder: "team" | "hero" | "news" | "gallery",
   previousUrl: string | null,
   maxDimension: number = MAX_DIMENSION
 ): Promise<string> {

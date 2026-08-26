@@ -9,6 +9,8 @@ import { AdminSettingsForm } from "@/components/admin/AdminSettingsForm";
 import { AdminInstitution } from "@/components/admin/AdminInstitution";
 import { AdminTeam } from "@/components/admin/AdminTeam";
 import { AdminNews } from "@/components/admin/AdminNews";
+import { AdminGallery } from "@/components/admin/AdminGallery";
+import { AdminDocuments } from "@/components/admin/AdminDocuments";
 import { AdminDashboardShell, type AdminModuleId } from "@/components/admin/AdminDashboardShell";
 
 function AdminShell({ children }: { children: ReactNode }) {
@@ -175,6 +177,8 @@ export function AdminPage() {
       {activeModule === "institucion" && <AdminInstitution />}
       {activeModule === "equipo" && <AdminTeam />}
       {activeModule === "noticias" && <AdminNews />}
+      {activeModule === "galeria" && <AdminGallery />}
+      {activeModule === "documentos" && <AdminDocuments />}
       {activeModule === "opiniones" && <AdminModeration />}
     </AdminDashboardShell>
   );

@@ -9,6 +9,8 @@ export type AdminModuleId =
   | "institucion"
   | "equipo"
   | "noticias"
+  | "galeria"
+  | "documentos"
   | "opiniones";
 
 const NAV_ITEMS: { id: AdminModuleId; label: string }[] = [
@@ -17,6 +19,8 @@ const NAV_ITEMS: { id: AdminModuleId; label: string }[] = [
   { id: "institucion", label: "Institución" },
   { id: "equipo", label: "Equipo" },
   { id: "noticias", label: "Noticias" },
+  { id: "galeria", label: "Galería" },
+  { id: "documentos", label: "Documentos" },
   { id: "opiniones", label: "Opiniones de familias" },
 ];
 
