@@ -8,6 +8,7 @@ import { fetchApprovedTestimonials, type Testimonial } from "@/lib/testimonials"
 export function TestimonialsSection() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
@@ -16,8 +17,12 @@ export function TestimonialsSection() {
       .then((data) => {
         if (active) setTestimonials(data);
       })
-      .catch(() => {
-        if (active) setTestimonials([]);
+      .catch((error) => {
+        // Se distingue de "aún no hay opiniones": si esto se dispara, algo
+        // impidió leer Supabase (config, red, RLS) y no debe confundirse
+        // con que simplemente no existan opiniones aprobadas todavía.
+        console.error("No se pudieron cargar las experiencias de familias:", error);
+        if (active) setLoadError(true);
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -42,7 +47,14 @@ export function TestimonialsSection() {
           </Button>
         </div>
 
-        {!loading && testimonials.length > 0 && (
+        {!loading && loadError && (
+          <p className="mt-12 text-center text-sm font-semibold text-coral-600">
+            No pudimos cargar las experiencias de familias en este momento. Inténtalo nuevamente
+            más tarde.
+          </p>
+        )}
+
+        {!loading && !loadError && testimonials.length > 0 && (
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
@@ -50,7 +62,7 @@ export function TestimonialsSection() {
           </div>
         )}
 
-        {!loading && testimonials.length === 0 && (
+        {!loading && !loadError && testimonials.length === 0 && (
           <p className="mt-12 text-center text-sm font-semibold text-ink-faint">
             Sé la primera familia en compartir su experiencia con nosotros.
           </p>
