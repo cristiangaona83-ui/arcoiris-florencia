@@ -155,7 +155,11 @@ export async function compressVideo(
 
     await ffmpeg.exec(args);
     const data = await ffmpeg.readFile(outputName);
-    const blob = new Blob([data], { type: "video/mp4" });
+    // ffmpeg.readFile() tipa su resultado como Uint8Array<ArrayBufferLike>
+    // (compatible con SharedArrayBuffer), pero Blob exige un ArrayBuffer
+    // concreto: se copia a un Uint8Array respaldado por un buffer propio.
+    const bytes = typeof data === "string" ? new TextEncoder().encode(data) : new Uint8Array(data);
+    const blob = new Blob([bytes], { type: "video/mp4" });
     const outputMeta = await readVideoMetadata(blob);
 
     return {
