@@ -11,6 +11,7 @@ import { AdminTeam } from "@/components/admin/AdminTeam";
 import { AdminNews } from "@/components/admin/AdminNews";
 import { AdminGallery } from "@/components/admin/AdminGallery";
 import { AdminDocuments } from "@/components/admin/AdminDocuments";
+import { AdminFaq } from "@/components/admin/AdminFaq";
 import { AdminDashboardShell, type AdminModuleId } from "@/components/admin/AdminDashboardShell";
 
 function AdminShell({ children }: { children: ReactNode }) {
@@ -179,6 +180,7 @@ export function AdminPage() {
       {activeModule === "noticias" && <AdminNews />}
       {activeModule === "galeria" && <AdminGallery />}
       {activeModule === "documentos" && <AdminDocuments />}
+      {activeModule === "faq" && <AdminFaq />}
       {activeModule === "opiniones" && <AdminModeration />}
     </AdminDashboardShell>
   );

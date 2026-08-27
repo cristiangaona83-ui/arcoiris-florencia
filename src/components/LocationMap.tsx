@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigation } from "lucide-react";
-import { siteConfig } from "@/data/siteConfig";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 /**
  * Mapa embebido de Google Maps (sin API key, usando el enlace público
@@ -10,8 +10,9 @@ import { siteConfig } from "@/data/siteConfig";
  * bloquee el desplazamiento normal de la página.
  */
 export function LocationMap() {
+  const { mapQuery, name } = useSiteSettings();
   const [isActive, setIsActive] = useState(false);
-  const query = encodeURIComponent(siteConfig.mapQuery);
+  const query = encodeURIComponent(mapQuery);
   const embedSrc = `https://www.google.com/maps?q=${query}&output=embed`;
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
 
@@ -19,7 +20,7 @@ export function LocationMap() {
     <div className="space-y-4">
       <div className="relative overflow-hidden rounded-3xl shadow-card ring-1 ring-ink/5">
         <iframe
-          title={`Mapa de ubicación de ${siteConfig.name}`}
+          title={`Mapa de ubicación de ${name}`}
           src={embedSrc}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

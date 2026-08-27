@@ -4,11 +4,12 @@ import { Logo } from "@/components/Logo";
 import { Button } from "@/components/Button";
 import { MobileMenu } from "@/components/MobileMenu";
 import { navLinks } from "@/data/navigation";
-import { siteConfig } from "@/data/siteConfig";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { cn } from "@/lib/utils";
 
 export function Header() {
+  const { shortName } = useSiteSettings();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
@@ -48,7 +49,7 @@ export function Header() {
           >
             <Logo className="h-9 w-9 shrink-0 sm:h-11 sm:w-11" />
             <span className="truncate font-display text-base font-bold leading-tight text-ink sm:text-xl">
-              {siteConfig.shortName}
+              {shortName}
             </span>
           </a>
 

@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/Button";
 import { navLinks } from "@/data/navigation";
-import { siteConfig } from "@/data/siteConfig";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,7 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ isOpen, onClose, activeId }: MobileMenuProps) {
+  const { shortName } = useSiteSettings();
   useLockBodyScroll(isOpen);
 
   return (
@@ -44,7 +45,7 @@ export function MobileMenu({ isOpen, onClose, activeId }: MobileMenuProps) {
           <div className="flex min-w-0 items-center gap-2.5">
             <Logo className="h-9 w-9 shrink-0" />
             <span className="truncate font-display text-base font-bold text-ink">
-              {siteConfig.shortName}
+              {shortName}
             </span>
           </div>
           <button

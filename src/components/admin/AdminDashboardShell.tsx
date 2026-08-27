@@ -11,6 +11,7 @@ export type AdminModuleId =
   | "noticias"
   | "galeria"
   | "documentos"
+  | "faq"
   | "opiniones";
 
 const NAV_ITEMS: { id: AdminModuleId; label: string }[] = [
@@ -21,6 +22,7 @@ const NAV_ITEMS: { id: AdminModuleId; label: string }[] = [
   { id: "noticias", label: "Noticias" },
   { id: "galeria", label: "Galería" },
   { id: "documentos", label: "Documentos" },
+  { id: "faq", label: "Preguntas frecuentes" },
   { id: "opiniones", label: "Opiniones de familias" },
 ];
 

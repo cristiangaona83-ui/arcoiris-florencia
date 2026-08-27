@@ -2,9 +2,10 @@ import { Clock } from "lucide-react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { LevelCard } from "@/components/LevelCard";
 import { levels } from "@/data/levels";
-import { siteConfig } from "@/data/siteConfig";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 export function LevelsSection() {
+  const { schedules } = useSiteSettings();
   return (
     <section id="niveles" className="bg-cream-soft py-14 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,14 +21,14 @@ export function LevelsSection() {
           ))}
         </div>
 
-        {siteConfig.schedules.length > 0 && (
+        {schedules.length > 0 && (
           <div className="mt-16">
             <h3 className="text-center font-display text-2xl font-bold text-ink sm:text-3xl">
               Horarios
             </h3>
 
             <div className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
-              {siteConfig.schedules.map((item, index) => (
+              {schedules.map((item, index) => (
                 <div
                   key={item.label}
                   className="reveal flex items-center gap-4 rounded-2xl bg-white p-5 shadow-card ring-1 ring-ink/5"

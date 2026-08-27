@@ -1,34 +1,66 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
-import { faqItems } from "@/data/faq";
-import { siteConfig } from "@/data/siteConfig";
+import { faqItems as staticFaqItems, type FaqItem } from "@/data/faq";
+import { fetchVisibleFaqItems } from "@/lib/faqItems";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { cn } from "@/lib/utils";
 
-/** Resalta en negrita (y como enlace) el correo institucional dentro de la respuesta. */
-function renderAnswer(text: string): ReactNode {
-  if (!siteConfig.email || !text.includes(siteConfig.email)) return text;
-
-  const [before, after] = text.split(siteConfig.email);
-  return (
-    <>
-      {before}
-      <a
-        href={`mailto:${siteConfig.email}`}
-        className="font-bold text-coral-600 underline decoration-coral-200 underline-offset-2 hover:text-coral-700"
-      >
-        {siteConfig.email}
-      </a>
-      {after}
-    </>
-  );
-}
-
 export function FaqAccordion() {
+  const { email, schedules } = useSiteSettings();
+
+  /** Resalta en negrita (y como enlace) el correo institucional dentro de la respuesta. */
+  function renderAnswer(text: string): ReactNode {
+    if (!email || !text.includes(email)) return text;
+
+    const [before, after] = text.split(email);
+    return (
+      <>
+        {before}
+        <a
+          href={`mailto:${email}`}
+          className="font-bold text-coral-600 underline decoration-coral-200 underline-offset-2 hover:text-coral-700"
+        >
+          {email}
+        </a>
+        {after}
+      </>
+    );
+  }
+
+  // Se inicializa ya con el respaldo estático: si Supabase falla o tarda,
+  // la sección nunca queda vacía, muestra las preguntas actuales sin
+  // interrupción.
+  const [items, setItems] = useState<FaqItem[]>(staticFaqItems);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    let active = true;
+    fetchVisibleFaqItems()
+      .then((rows) => {
+        if (!active) return;
+        if (rows.length === 0) return; // sin filas aún: se mantiene el respaldo estático
+        setItems(
+          rows.map((row) => ({
+            question: row.question,
+            answer: row.answer,
+            showSchedule: row.content_type === "schedule",
+          }))
+        );
+      })
+      .catch((error) => {
+        console.error(
+          "No se pudo cargar las preguntas frecuentes desde Supabase; se mantiene el contenido estático:",
+          error
+        );
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <div className="mx-auto max-w-2xl space-y-3">
-      {faqItems.map((item, index) => {
+      {items.map((item, index) => {
         const isOpen = openIndex === index;
         const panelId = `faq-panel-${index}`;
         const buttonId = `faq-button-${index}`;
@@ -73,9 +105,9 @@ export function FaqAccordion() {
                     {renderAnswer(item.answer)}
                   </p>
 
-                  {item.showSchedule && siteConfig.schedules.length > 0 && (
+                  {item.showSchedule && schedules.length > 0 && (
                     <ul className="mt-3 space-y-1.5 border-t border-ink/10 pt-3">
-                      {siteConfig.schedules.map((schedule) => (
+                      {schedules.map((schedule) => (
                         <li key={schedule.label} className="text-sm text-ink-soft">
                           <span className="font-bold text-ink">{schedule.label}:</span>{" "}
                           {schedule.hours} hrs.

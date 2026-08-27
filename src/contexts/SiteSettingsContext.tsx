@@ -22,6 +22,11 @@ export interface EffectiveSiteSettings {
   heroSecondaryButtonLabel: string;
   heroSecondaryButtonHref: string;
   heroImageUrl: string;
+  logoUrl: string;
+  mapQuery: string;
+  contactSectionEyebrow: string;
+  contactSectionTitle: string;
+  contactSectionDescription: string;
   /** false mientras se usa el respaldo estático (aún no cargó o falló Supabase). */
   isFromDatabase: boolean;
 }
@@ -36,6 +41,14 @@ function buildEffectiveSettings(row: SiteSettingsRow | null): EffectiveSiteSetti
   const addressStreet = row?.address_street || siteConfig.addressStreet;
   const sector = row?.sector || siteConfig.sector;
   const region = row?.region || siteConfig.region;
+  // site_settings no tiene columnas propias para ciudad/país (no forman
+  // parte de los campos que se editan desde /admin): se mantienen fijos
+  // desde siteConfig para no perderlos de la dirección completa.
+  const fullAddress = row
+    ? [addressStreet, sector, siteConfig.city, region, siteConfig.country]
+        .filter(Boolean)
+        .join(", ")
+    : siteConfig.fullAddress;
 
   return {
     name: row?.name || siteConfig.name,
@@ -43,10 +56,8 @@ function buildEffectiveSettings(row: SiteSettingsRow | null): EffectiveSiteSetti
     addressStreet,
     sector,
     region,
-    fullAddress: row
-      ? [addressStreet, sector, region].filter(Boolean).join(", ")
-      : siteConfig.fullAddress,
-    rbd: siteConfig.rbd,
+    fullAddress,
+    rbd: row?.rbd || siteConfig.rbd,
     phones: row?.phones?.length ? row.phones : [...siteConfig.phones],
     email: row?.email || siteConfig.email,
     schedules: row?.schedules?.length ? row.schedules : [...siteConfig.schedules],
@@ -64,6 +75,12 @@ function buildEffectiveSettings(row: SiteSettingsRow | null): EffectiveSiteSetti
     heroSecondaryButtonLabel: row?.hero_secondary_button_label || "Contáctanos",
     heroSecondaryButtonHref: row?.hero_secondary_button_href || "#contacto",
     heroImageUrl: row?.hero_image_url || "/images/PORTADA.jpeg",
+    logoUrl: row?.logo_url || "/logo.jpg",
+    mapQuery: row?.map_query || fullAddress,
+    contactSectionEyebrow: row?.contact_section_eyebrow || "Hablemos",
+    contactSectionTitle: row?.contact_section_title || "Estamos aquí para ti",
+    contactSectionDescription:
+      row?.contact_section_description || "Escríbenos y responderemos a la brevedad.",
     isFromDatabase: row !== null,
   };
 }

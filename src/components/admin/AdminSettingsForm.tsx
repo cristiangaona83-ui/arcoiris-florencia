@@ -4,6 +4,7 @@ import {
   fetchSiteSettings,
   updateSiteSettings,
   uploadHeroImage,
+  uploadLogo,
   type PhoneEntry,
   type ScheduleEntry,
   type SiteSettingsRow,
@@ -30,6 +31,12 @@ const EMPTY_FORM: FormState = {
   hero_secondary_button_label: "",
   hero_secondary_button_href: "",
   hero_image_url: "",
+  logo_url: "",
+  rbd: "",
+  map_query: "",
+  contact_section_eyebrow: "",
+  contact_section_title: "",
+  contact_section_description: "",
 };
 
 function textField(value: string | null): string {
@@ -69,7 +76,9 @@ export function AdminSettingsForm() {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [uploadingHero, setUploadingHero] = useState(false);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
   const heroFileInputRef = useRef<HTMLInputElement>(null);
+  const logoFileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let active = true;
@@ -96,6 +105,12 @@ export function AdminSettingsForm() {
             hero_secondary_button_label: textField(row.hero_secondary_button_label),
             hero_secondary_button_href: textField(row.hero_secondary_button_href),
             hero_image_url: textField(row.hero_image_url),
+            logo_url: textField(row.logo_url),
+            rbd: textField(row.rbd),
+            map_query: textField(row.map_query),
+            contact_section_eyebrow: textField(row.contact_section_eyebrow),
+            contact_section_title: textField(row.contact_section_title),
+            contact_section_description: textField(row.contact_section_description),
           });
         }
       })
@@ -168,6 +183,24 @@ export function AdminSettingsForm() {
     }
   }
 
+  async function handleLogoFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+
+    setUploadingLogo(true);
+    setSaveError(null);
+    try {
+      const url = await uploadLogo(file, form.logo_url || null);
+      patch("logo_url", url);
+    } catch (error) {
+      console.error("No se pudo subir el logo:", error);
+      setSaveError("No se pudo subir el logo. Inténtalo nuevamente.");
+    } finally {
+      setUploadingLogo(false);
+    }
+  }
+
   async function handleSave() {
     setSaving(true);
     setSaveError(null);
@@ -224,6 +257,7 @@ export function AdminSettingsForm() {
             value={textField(form.region)}
             onChange={(v) => patch("region", v)}
           />
+          <Field label="RBD" value={textField(form.rbd)} onChange={(v) => patch("rbd", v)} />
           <Field
             label="Correo electrónico"
             value={textField(form.email)}
@@ -238,6 +272,70 @@ export function AdminSettingsForm() {
             label="Instagram"
             value={textField(form.social_instagram)}
             onChange={(v) => patch("social_instagram", v)}
+          />
+          <div>
+            <label className="mb-1.5 block text-sm font-bold text-ink">
+              Ubicación del mapa <span className="font-normal text-ink-faint">(opcional)</span>
+            </label>
+            <input
+              type="text"
+              value={textField(form.map_query)}
+              placeholder="Se usa la dirección de arriba si se deja vacío"
+              onChange={(e) => patch("map_query", e.target.value)}
+              className="w-full min-h-[48px] rounded-2xl border-2 border-ink/10 bg-white px-4 py-3 text-ink outline-none transition-colors focus:border-coral-400"
+            />
+          </div>
+        </div>
+
+        <div className="mt-5 flex items-center gap-4">
+          <label className="block text-sm font-bold text-ink">Logo</label>
+          {form.logo_url && (
+            <img
+              src={form.logo_url}
+              alt="Vista previa del logo"
+              className="h-14 w-14 rounded-full object-cover ring-1 ring-ink/10"
+            />
+          )}
+          <button
+            type="button"
+            disabled={uploadingLogo}
+            onClick={() => logoFileInputRef.current?.click()}
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cream-deep px-4 py-2 text-sm font-bold text-ink hover:bg-sun-100 disabled:opacity-60"
+          >
+            <Upload className="h-4 w-4" aria-hidden="true" />
+            {uploadingLogo ? "Subiendo…" : "Reemplazar logo"}
+          </button>
+          <input
+            ref={logoFileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleLogoFileChange}
+          />
+        </div>
+      </section>
+
+      <section className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-ink/5 sm:p-8">
+        <h3 className="font-display text-lg font-bold text-ink">Sección Contacto</h3>
+        <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <Field
+            label="Antetítulo"
+            value={textField(form.contact_section_eyebrow)}
+            onChange={(v) => patch("contact_section_eyebrow", v)}
+          />
+          <Field
+            label="Título"
+            value={textField(form.contact_section_title)}
+            onChange={(v) => patch("contact_section_title", v)}
+          />
+        </div>
+        <div className="mt-5">
+          <label className="mb-1.5 block text-sm font-bold text-ink">Descripción</label>
+          <textarea
+            value={textField(form.contact_section_description)}
+            onChange={(e) => patch("contact_section_description", e.target.value)}
+            rows={2}
+            className="w-full resize-none rounded-2xl border-2 border-ink/10 bg-white px-4 py-3 text-ink outline-none focus:border-coral-400"
           />
         </div>
       </section>

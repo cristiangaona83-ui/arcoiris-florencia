@@ -1,14 +1,12 @@
-import { siteConfig } from "@/data/siteConfig";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
-/**
- * Logo oficial del jardín (public/logo.jpg). Para reemplazarlo por una
- * versión más nueva, sobrescribe ese archivo o cambia el "src" de abajo.
- */
+/** Logo institucional, editable desde /admin (respaldo: public/logo.jpg). */
 export function Logo({ className = "h-11 w-11" }: { className?: string }) {
+  const { logoUrl, name } = useSiteSettings();
   return (
     <img
-      src="/logo.jpg"
-      alt={siteConfig.name}
+      src={logoUrl}
+      alt={name}
       className={`${className} rounded-full object-cover ring-2 ring-white shadow-card`}
     />
   );

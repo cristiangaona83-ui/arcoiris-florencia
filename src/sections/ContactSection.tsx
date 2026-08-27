@@ -2,18 +2,20 @@ import { Clock, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "
 import { SectionTitle } from "@/components/SectionTitle";
 import { ContactForm } from "@/components/ContactForm";
 import { LocationMap } from "@/components/LocationMap";
-import { siteConfig, PLACEHOLDER_TEXT } from "@/data/siteConfig";
+import { PLACEHOLDER_TEXT } from "@/data/siteConfig";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 export function ContactSection() {
-  const hasSocial = siteConfig.social.facebook || siteConfig.social.instagram;
+  const settings = useSiteSettings();
+  const hasSocial = settings.social.facebook || settings.social.instagram;
 
   return (
     <section id="contacto" className="bg-cream-soft py-14 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          eyebrow="Hablemos"
-          title="Estamos aquí para ti"
-          description="Escríbenos y responderemos a la brevedad."
+          eyebrow={settings.contactSectionEyebrow}
+          title={settings.contactSectionTitle}
+          description={settings.contactSectionDescription}
         />
 
         <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-12">
@@ -25,8 +27,8 @@ export function ContactSection() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-ink">Dirección</p>
-                  <p className="text-sm text-ink-soft break-words">{siteConfig.fullAddress}</p>
-                  <p className="mt-1 text-xs text-ink-faint">RBD: {siteConfig.rbd}</p>
+                  <p className="text-sm text-ink-soft break-words">{settings.fullAddress}</p>
+                  <p className="mt-1 text-xs text-ink-faint">RBD: {settings.rbd}</p>
                 </div>
               </li>
 
@@ -36,9 +38,9 @@ export function ContactSection() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-ink">Teléfono / WhatsApp</p>
-                  {siteConfig.phones.length > 0 ? (
+                  {settings.phones.length > 0 ? (
                     <ul className="mt-1 space-y-1.5">
-                      {siteConfig.phones.map((phone) => (
+                      {settings.phones.map((phone) => (
                         <li key={phone.whatsapp} className="flex flex-wrap items-center gap-x-3 gap-y-1">
                           <a
                             href={`tel:+${phone.whatsapp}`}
@@ -48,7 +50,7 @@ export function ContactSection() {
                           </a>
                           <a
                             href={`https://wa.me/${phone.whatsapp}?text=${encodeURIComponent(
-                              `Hola, quisiera obtener información de ${siteConfig.name}.`
+                              `Hola, quisiera obtener información de ${settings.name}.`
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -73,12 +75,12 @@ export function ContactSection() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-ink">Correo electrónico</p>
-                  {siteConfig.email ? (
+                  {settings.email ? (
                     <a
-                      href={`mailto:${siteConfig.email}`}
+                      href={`mailto:${settings.email}`}
                       className="text-sm text-ink-soft break-words hover:text-coral-600"
                     >
-                      {siteConfig.email}
+                      {settings.email}
                     </a>
                   ) : (
                     <p className="text-sm italic text-ink-faint">{PLACEHOLDER_TEXT}</p>
@@ -92,9 +94,9 @@ export function ContactSection() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-ink">Horarios</p>
-                  {siteConfig.schedules.length > 0 ? (
+                  {settings.schedules.length > 0 ? (
                     <ul className="mt-1 space-y-0.5">
-                      {siteConfig.schedules.map((item) => (
+                      {settings.schedules.map((item) => (
                         <li key={item.label} className="text-sm text-ink-soft">
                           <span className="font-semibold text-ink">{item.label}:</span> {item.hours}
                         </li>
@@ -114,9 +116,9 @@ export function ContactSection() {
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-ink">Síguenos</p>
                     <div className="mt-1.5 flex gap-2">
-                      {siteConfig.social.facebook && (
+                      {settings.social.facebook && (
                         <a
-                          href={siteConfig.social.facebook}
+                          href={settings.social.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="Facebook de Jardín Infantil Arcoíris Florencia"
@@ -125,9 +127,9 @@ export function ContactSection() {
                           <Facebook className="h-5 w-5" aria-hidden="true" />
                         </a>
                       )}
-                      {siteConfig.social.instagram && (
+                      {settings.social.instagram && (
                         <a
-                          href={siteConfig.social.instagram}
+                          href={settings.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="Instagram de Jardín Infantil Arcoíris Florencia"

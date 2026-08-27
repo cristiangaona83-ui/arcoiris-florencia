@@ -1,20 +1,21 @@
 import { MessageCircle } from "lucide-react";
-import { siteConfig } from "@/data/siteConfig";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { useHideNearFooter } from "@/hooks/useHideNearFooter";
 
 const HIDE_NEAR_IDS = ["contacto", "site-footer"];
 
 /**
- * Botón flotante de WhatsApp. Usa el primer número de siteConfig.phones.
+ * Botón flotante de WhatsApp. Usa el primer número configurado.
  * Si no hay ningún número cargado, el botón queda visualmente presente
  * pero deshabilitado (no inventa ni redirige a ningún número).
  */
 export function WhatsAppButton() {
-  const primary = siteConfig.phones[0];
+  const { phones, name } = useSiteSettings();
+  const primary = phones[0];
   const hasNumber = Boolean(primary?.whatsapp?.trim());
   const href = hasNumber
     ? `https://wa.me/${primary.whatsapp}?text=${encodeURIComponent(
-        `Hola, quisiera obtener información de ${siteConfig.name}.`
+        `Hola, quisiera obtener información de ${name}.`
       )}`
     : undefined;
 
@@ -46,7 +47,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       className={`${commonClasses} bg-leaf-500 text-white hover:-translate-y-1 hover:bg-leaf-600`}
-      aria-label={`Escribir por WhatsApp a ${siteConfig.name}`}
+      aria-label={`Escribir por WhatsApp a ${name}`}
     >
       <MessageCircle className="h-7 w-7" aria-hidden="true" />
     </a>
