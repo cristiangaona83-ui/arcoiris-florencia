@@ -10,6 +10,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
     "@formspree/react": "^3.0.0",
     "@supabase/supabase-js": "^2.112.3",
     "lucide-react": "^0.462.0",
