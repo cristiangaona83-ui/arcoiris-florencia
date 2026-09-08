@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 export function TeamCard({ member, index }: { member: TeamMember; index: number }) {
   return (
     <article
-      className="reveal flex flex-col items-center rounded-3xl bg-white p-4 text-center shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1.5 sm:p-6"
+      className="flex flex-col items-center rounded-3xl bg-white p-4 text-center shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1.5 sm:p-6"
       style={{ transitionDelay: `${index * 70}ms` }}
     >
       <div

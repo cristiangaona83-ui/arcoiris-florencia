@@ -9,7 +9,7 @@ export function NewsCard({ item, index }: { item: NewsItem; index: number }) {
 
   return (
     <article
-      className="reveal flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1.5"
+      className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-card ring-1 ring-ink/5 transition-transform duration-300 hover:-translate-y-1.5"
       style={{ transitionDelay: `${index * 70}ms` }}
     >
       <div className="aspect-[16/10] bg-sky-50">

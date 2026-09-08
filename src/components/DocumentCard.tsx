@@ -3,7 +3,7 @@ import type { InstitutionalDocument } from "@/data/documents";
 
 export function DocumentCard({ doc }: { doc: InstitutionalDocument }) {
   return (
-    <article className="reveal flex flex-col gap-4 rounded-3xl bg-white p-5 shadow-card ring-1 ring-ink/5 sm:flex-row sm:items-center sm:p-6">
+    <article className="flex flex-col gap-4 rounded-3xl bg-white p-5 shadow-card ring-1 ring-ink/5 sm:flex-row sm:items-center sm:p-6">
       <div className="flex items-start gap-4 sm:flex-1 sm:items-center">
         <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-coral-50 text-coral-500">
           <FileText className="h-7 w-7" aria-hidden="true" />
