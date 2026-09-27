@@ -1,11 +1,11 @@
 import { Hero } from "@/components/Hero";
-import { AdmissionBanner } from "@/components/AdmissionBanner";
 import { WelcomeSection } from "@/sections/WelcomeSection";
 import { HistorySection } from "@/sections/HistorySection";
 import { WhyUsSection } from "@/sections/WhyUsSection";
 import { ProjectSection } from "@/sections/ProjectSection";
 import { PedagogySection } from "@/sections/PedagogySection";
 import { LevelsSection } from "@/sections/LevelsSection";
+import { AdmissionBanner } from "@/components/AdmissionBanner";
 import { TeamSection } from "@/sections/TeamSection";
 import { GallerySection } from "@/sections/GallerySection";
 import { NewsSection } from "@/sections/NewsSection";
@@ -17,7 +17,6 @@ import { ContactSection } from "@/sections/ContactSection";
 export function Home() {
   return (
     <>
-      <AdmissionBanner />
       <Hero />
       <div id="nuestro-jardin">
         <WelcomeSection />
@@ -27,6 +26,7 @@ export function Home() {
       <ProjectSection />
       <PedagogySection />
       <LevelsSection />
+      <AdmissionBanner />
       <TeamSection />
       <GallerySection />
       <NewsSection />
