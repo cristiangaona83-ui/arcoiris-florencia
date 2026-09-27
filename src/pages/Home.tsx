@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { AdmissionBanner } from "@/components/AdmissionBanner";
 import { WelcomeSection } from "@/sections/WelcomeSection";
 import { HistorySection } from "@/sections/HistorySection";
 import { WhyUsSection } from "@/sections/WhyUsSection";
@@ -16,6 +17,7 @@ import { ContactSection } from "@/sections/ContactSection";
 export function Home() {
   return (
     <>
+      <AdmissionBanner />
       <Hero />
       <div id="nuestro-jardin">
         <WelcomeSection />

@@ -2,7 +2,6 @@ import { Suspense, lazy } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { AdmissionPromoModal } from "@/components/AdmissionPromoModal";
 import { Home } from "@/pages/Home";
 import { SiteSettingsProvider } from "@/contexts/SiteSettingsContext";
 import { InstitutionalContentProvider } from "@/contexts/InstitutionalContentContext";
@@ -48,7 +47,6 @@ function App() {
           </main>
           <Footer />
           <WhatsAppButton />
-          <AdmissionPromoModal />
         </div>
       </InstitutionalContentProvider>
     </SiteSettingsProvider>
