@@ -67,7 +67,7 @@ export function FaqAccordion() {
 
         return (
           <div
-            key={item.question}
+            key={index}
             className="reveal overflow-hidden rounded-2xl bg-white shadow-card ring-1 ring-ink/5"
             style={{ transitionDelay: `${index * 60}ms` }}
           >

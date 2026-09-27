@@ -30,7 +30,7 @@ export function LevelsSection() {
             <div className="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
               {schedules.map((item, index) => (
                 <div
-                  key={item.label}
+                  key={index}
                   className="reveal flex items-center gap-4 rounded-2xl bg-white p-5 shadow-card ring-1 ring-ink/5"
                   style={{ transitionDelay: `${index * 80}ms` }}
                 >
